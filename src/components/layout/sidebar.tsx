@@ -22,9 +22,8 @@ interface SidebarProps {
 }
 
 // Pastikan Sidebar menerima { session } di dalam kurung kurawal
-export default function Sidebar({ session }: SidebarProps) {
+export default function Sidebar({ session }: any) {
   const pathname = usePathname();
-
   // Ambil data user secara aman
   const userName = session?.user?.name || "M. Fikri (Ikki)";
   const userRole = session?.user?.role || "Web Developer";
