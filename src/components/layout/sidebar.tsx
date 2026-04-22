@@ -16,8 +16,18 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export default function Sidebar() {
+// --- TAMBAHAN: DEFINISI PROPS AGAR VERCEL TIDAK ERROR ---
+interface SidebarProps {
+  session?: any;
+}
+
+export default function Sidebar({ session }: SidebarProps) {
   const pathname = usePathname();
+
+  // Ambil data user dari session (atau pakai fallback jika kosong)
+  const userName = session?.user?.name || "M. Fikri (Ikki)";
+  const userRole = session?.user?.role || "Web Developer";
+  const userInitial = userName.substring(0, 2).toUpperCase();
 
   const menuItems = [
     { 
@@ -45,7 +55,6 @@ export default function Sidebar() {
       href: "/inventory", 
       icon: Package 
     },
-    // INI MENU BARU YANG KAU MINTA
     { 
       label: "Gudang Pusat", 
       href: "/inventory/master", 
@@ -106,12 +115,12 @@ export default function Sidebar() {
         <div className="flex items-center gap-3 px-3 py-2">
           <div className="w-8 h-8 bg-slate-700 rounded-full border border-slate-600 overflow-hidden">
             <div className="w-full h-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-xs">
-              IF
+              {userInitial}
             </div>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-black text-white truncate">M. Fikri (Ikki)</p>
-            <p className="text-[10px] text-slate-500 font-bold truncate">Web Developer</p>
+            <p className="text-xs font-black text-white truncate">{userName}</p>
+            <p className="text-[10px] text-slate-500 font-bold truncate">{userRole}</p>
           </div>
         </div>
         <button 
