@@ -4,8 +4,8 @@ import { useState, useMemo } from "react";
 import type { SessionPayload } from "@/lib/auth";
 
 type Project = {
-  id: string; // Diubah ke string untuk UUID
-  projectCode: string;
+  id: string; // Ganti ke string karena kita pakai UUID
+  projectCode: string | null; // Tambahkan | null supaya Vercel aman
   projectName: string;
   customerName: string;
   picName: string;
@@ -16,6 +16,7 @@ type Project = {
   location: string | null;
   notes: string | null;
   createdAt: Date | string | null;
+  updatedAt?: Date | string | null;
 };
 
 type User = { id: string; fullName: string };
