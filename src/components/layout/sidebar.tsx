@@ -16,15 +16,16 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// --- TAMBAHAN: DEFINISI PROPS AGAR VERCEL TIDAK ERROR ---
+// --- BANTAI DISINI: DEFINISI PROPS WAJIB UNTUK VERCEL ---
 interface SidebarProps {
   session?: any;
 }
 
+// Pastikan Sidebar menerima { session } di dalam kurung kurawal
 export default function Sidebar({ session }: SidebarProps) {
   const pathname = usePathname();
 
-  // Ambil data user dari session (atau pakai fallback jika kosong)
+  // Ambil data user secara aman
   const userName = session?.user?.name || "M. Fikri (Ikki)";
   const userRole = session?.user?.role || "Web Developer";
   const userInitial = userName.substring(0, 2).toUpperCase();
