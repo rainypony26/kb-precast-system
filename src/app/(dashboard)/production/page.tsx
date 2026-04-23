@@ -7,15 +7,13 @@ import ProductionClient from "@/components/crm/production-client";
 export default async function ProductionPage() {
   const session = await getSession();
 
-  // Proyek yang sudah KONTRAK
   const kontrakProjects = await db
     .select()
     .from(projects)
     .where(eq(projects.status, "KONTRAK"))
     .orderBy(desc(projects.createdAt));
 
-  // Semua contracts beserta project info
-  const allContracts = await db
+  const rawContracts = await db
     .select({
       id: contracts.id,
       projectId: contracts.projectId,
@@ -34,8 +32,15 @@ export default async function ProductionPage() {
     .leftJoin(projects, eq(contracts.projectId, projects.id))
     .orderBy(desc(contracts.createdAt));
 
-  // Semua SPK / production plans
-  const allPlans = await db
+  // ✅ Konversi Date → string sebelum dikirim ke Client Component
+  const allContracts = rawContracts.map(c => ({
+    ...c,
+    startDate: c.startDate.toISOString(),
+    endDate: c.endDate.toISOString(),
+    createdAt: c.createdAt ? c.createdAt.toISOString() : null,
+  }));
+
+  const rawPlans = await db
     .select({
       id: productionPlans.id,
       contractId: productionPlans.contractId,
@@ -50,6 +55,14 @@ export default async function ProductionPage() {
     })
     .from(productionPlans)
     .orderBy(desc(productionPlans.createdAt));
+
+  // ✅ Konversi Date → string sebelum dikirim ke Client Component
+  const allPlans = rawPlans.map(p => ({
+    ...p,
+    commenceDate: p.commenceDate.toISOString(),
+    deadlineDate: p.deadlineDate.toISOString(),
+    createdAt: p.createdAt ? p.createdAt.toISOString() : null,
+  }));
 
   return (
     <ProductionClient
