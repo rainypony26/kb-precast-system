@@ -13,10 +13,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex">
-      {/* --- PALU GODAM: SURUH TYPESCRIPT DIAM --- */}
-      {/* @ts-ignore */}
       <Sidebar session={session} />
-      
       <main className="flex-1 min-h-screen"> 
         {children}
       </main>

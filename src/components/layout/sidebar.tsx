@@ -15,18 +15,18 @@ import {
   LogOut
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SessionPayload } from "@/lib/auth";
 
-// --- BANTAI DISINI: DEFINISI PROPS WAJIB UNTUK VERCEL ---
+// ✅ Pakai SessionPayload langsung dari lib/auth
 interface SidebarProps {
-  session?: any;
+  session?: SessionPayload | null;
 }
 
-// Pastikan Sidebar menerima { session } di dalam kurung kurawal
-export default function Sidebar({ session }: any) {
+export default function Sidebar({ session }: SidebarProps) {
   const pathname = usePathname();
-  // Ambil data user secara aman
-  const userName = session?.user?.name || "M. Fikri (Ikki)";
-  const userRole = session?.user?.role || "Web Developer";
+  // ✅ Sesuai field asli: fullName & role (bukan user.name / user.role)
+  const userName = session?.fullName || "M. Fikri (Ikki)";
+  const userRole = session?.role || "Web Developer";
   const userInitial = userName.substring(0, 2).toUpperCase();
 
   const menuItems = [
