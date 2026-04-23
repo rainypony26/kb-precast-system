@@ -32,13 +32,18 @@ export default async function ProductionPage() {
     .leftJoin(projects, eq(contracts.projectId, projects.id))
     .orderBy(desc(contracts.createdAt));
 
-  // ✅ Konversi Date → string sebelum dikirim ke Client Component
   const allContracts = rawContracts.map(c => ({
     ...c,
-    startDate: c.startDate.toISOString(),
-    endDate: c.endDate.toISOString(),
-    createdAt: c.createdAt ? c.createdAt.toISOString() : null,
-  }));
+    startDate: (c.startDate as Date).toISOString(),
+    endDate: (c.endDate as Date).toISOString(),
+    createdAt: c.createdAt ? (c.createdAt as Date).toISOString() : null,
+  })) as {
+    id: string; projectId: string; poId: string | null;
+    contractNumber: string; contractValue: string;
+    startDate: string; endDate: string;
+    notes: string | null; createdAt: string | null;
+    projectName: string | null; projectCode: string | null; customerName: string | null;
+  }[];
 
   const rawPlans = await db
     .select({
@@ -56,13 +61,17 @@ export default async function ProductionPage() {
     .from(productionPlans)
     .orderBy(desc(productionPlans.createdAt));
 
-  // ✅ Konversi Date → string sebelum dikirim ke Client Component
   const allPlans = rawPlans.map(p => ({
     ...p,
-    commenceDate: p.commenceDate.toISOString(),
-    deadlineDate: p.deadlineDate.toISOString(),
-    createdAt: p.createdAt ? p.createdAt.toISOString() : null,
-  }));
+    commenceDate: (p.commenceDate as Date).toISOString(),
+    deadlineDate: (p.deadlineDate as Date).toISOString(),
+    createdAt: p.createdAt ? (p.createdAt as Date).toISOString() : null,
+  })) as {
+    id: string; contractId: string; spkNumber: string | null;
+    targetVolume: number; unit: string;
+    commenceDate: string; deadlineDate: string;
+    status: string; notes: string | null; createdAt: string | null;
+  }[];
 
   return (
     <ProductionClient
