@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
-import { projects } from "@/db/schema";
+import { productionPlans, bomMaterials, manpowerPlans } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 
@@ -15,28 +15,64 @@ export async function PATCH(
   const body = await req.json();
 
   try {
-    const updateData: Record<string, unknown> = { updatedAt: new Date() };
-
-    if (body.status !== undefined)           updateData.status = body.status;
-    if (body.projectName !== undefined)      updateData.projectName = body.projectName;
-    if (body.customerName !== undefined)     updateData.customerName = body.customerName;
-    if (body.picName !== undefined)          updateData.picName = body.picName;
-    if (body.projectValue !== undefined)     updateData.projectValue = body.projectValue ? String(body.projectValue) : null;
-    if (body.tenderDate !== undefined)       updateData.tenderDate = body.tenderDate || null;
-    if (body.estimatedFinish !== undefined)  updateData.estimatedFinish = body.estimatedFinish || null;
-    if (body.location !== undefined)         updateData.location = body.location || null;
-    if (body.notes !== undefined)            updateData.notes = body.notes || null;
+    const update: Record<string, unknown> = { updatedAt: new Date() };
+    if (body.status !== undefined)       update.status = body.status;
+    if (body.spkNumber !== undefined)    update.spkNumber = body.spkNumber;
+    if (body.targetVolume !== undefined) update.targetVolume = Number(body.targetVolume);
+    if (body.unit !== undefined)         update.unit = body.unit;
+    if (body.commenceDate !== undefined) update.commenceDate = body.commenceDate;
+    if (body.deadlineDate !== undefined) update.deadlineDate = body.deadlineDate;
+    if (body.notes !== undefined)        update.notes = body.notes || null;
 
     const [updated] = await db
-      .update(projects)
-      .set(updateData)
-      .where(eq(projects.id, id))
+      .update(productionPlans)
+      .set(update)
+      .where(eq(productionPlans.id, id))
       .returning();
 
-    return NextResponse.json(updated);
+    // JIKA FORM EDIT MENGIRIM BOM BARU (HAPUS YANG LAMA, MASUKKAN YANG BARU)
+    if (body.bomItems) {
+      await db.delete(bomMaterials).where(eq(bomMaterials.planId, id));
+      const validBom = body.bomItems.filter((b: any) => b.materialName && b.estimatedQty);
+      if (validBom.length > 0) {
+        const bomData = validBom.map((item: any) => ({
+          planId: id,
+          materialName: item.materialName,
+          estimatedQty: item.estimatedQty.toString(),
+          unit: item.unit,
+          procurementType: item.procurementType,
+          unitPrice: item.unitPrice?.toString() || "0",
+          notes: item.notes || null
+        }));
+        await db.insert(bomMaterials).values(bomData);
+      }
+    }
+
+    // JIKA FORM EDIT MENGIRIM MANPOWER BARU
+    if (body.manpowerItems) {
+      await db.delete(manpowerPlans).where(eq(manpowerPlans.planId, id));
+      const validMp = body.manpowerItems.filter((m: any) => m.roleDescription && m.headcount);
+      if (validMp.length > 0) {
+        const mpData = validMp.map((mp: any) => ({
+          planId: id,
+          sourceType: mp.sourceType,
+          headcount: Number(mp.headcount),
+          roleDescription: mp.roleDescription,
+          dailyRate: mp.dailyRate?.toString() || "0",
+          notes: mp.notes || null
+        }));
+        await db.insert(manpowerPlans).values(mpData);
+      }
+    }
+
+    // Kembalikan data lengkap
+    const finalBoms = await db.select().from(bomMaterials).where(eq(bomMaterials.planId, id));
+    const finalMps = await db.select().from(manpowerPlans).where(eq(manpowerPlans.planId, id));
+
+    return NextResponse.json({ ...updated, bomItems: finalBoms, manpowerItems: finalMps });
   } catch (err) {
     console.error(err);
-    return NextResponse.json({ error: "Gagal update proyek" }, { status: 500 });
+    return NextResponse.json({ error: "Gagal update SPK" }, { status: 500 });
   }
 }
 
@@ -49,12 +85,6 @@ export async function DELETE(
   if (session.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const { id } = await params;
-
-  try {
-    await db.delete(projects).where(eq(projects.id, id));
-    return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: "Gagal hapus proyek" }, { status: 500 });
-  }
+  await db.delete(productionPlans).where(eq(productionPlans.id, id));
+  return NextResponse.json({ success: true });
 }

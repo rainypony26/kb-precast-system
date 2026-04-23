@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { projects, contracts, productionPlans } from "@/db/schema";
+import { projects, contracts, productionPlans, bomMaterials, manpowerPlans } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 import ProductionClient from "@/components/crm/production-client";
@@ -34,16 +34,10 @@ export default async function ProductionPage() {
 
   const allContracts = rawContracts.map(c => ({
     ...c,
-    startDate: (c.startDate as Date).toISOString(),
-    endDate: (c.endDate as Date).toISOString(),
+    startDate: c.startDate ? (c.startDate as Date).toISOString() : null,
+    endDate: c.endDate ? (c.endDate as Date).toISOString() : null,
     createdAt: c.createdAt ? (c.createdAt as Date).toISOString() : null,
-  })) as {
-    id: string; projectId: string; poId: string | null;
-    contractNumber: string; contractValue: string;
-    startDate: string; endDate: string;
-    notes: string | null; createdAt: string | null;
-    projectName: string | null; projectCode: string | null; customerName: string | null;
-  }[];
+  })) as any;
 
   const rawPlans = await db
     .select({
@@ -61,17 +55,18 @@ export default async function ProductionPage() {
     .from(productionPlans)
     .orderBy(desc(productionPlans.createdAt));
 
+  // TARIK DATA BOM & MANPOWER UNTUK DITAMPILKAN DI DETAIL/EDIT SPK
+  const allBoms = await db.select().from(bomMaterials);
+  const allMps = await db.select().from(manpowerPlans);
+
   const allPlans = rawPlans.map(p => ({
     ...p,
-    commenceDate: (p.commenceDate as Date).toISOString(),
-    deadlineDate: (p.deadlineDate as Date).toISOString(),
+    commenceDate: p.commenceDate ? (p.commenceDate as Date).toISOString() : null,
+    deadlineDate: p.deadlineDate ? (p.deadlineDate as Date).toISOString() : null,
     createdAt: p.createdAt ? (p.createdAt as Date).toISOString() : null,
-  })) as {
-    id: string; contractId: string; spkNumber: string | null;
-    targetVolume: number; unit: string;
-    commenceDate: string; deadlineDate: string;
-    status: string; notes: string | null; createdAt: string | null;
-  }[];
+    bomItems: allBoms.filter(b => b.planId === p.id),
+    manpowerItems: allMps.filter(m => m.planId === p.id)
+  })) as any;
 
   return (
     <ProductionClient

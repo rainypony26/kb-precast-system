@@ -30,7 +30,7 @@ const STATUS_META: Record<string, { label: string; color: string; bg: string; bo
   PO:         { label: "PO",         color: "#c084fc", bg: "rgba(192,132,252,0.12)", border: "rgba(192,132,252,0.3)" },
   KONTRAK:    { label: "Kontrak",    color: "#4ade80", bg: "rgba(74,222,128,0.12)",  border: "rgba(74,222,128,0.3)" },
   SELESAI:    { label: "Selesai",    color: "#34d399", bg: "rgba(52,211,153,0.12)",  border: "rgba(52,211,153,0.3)" },
-  BATAL:      { label: "Batal",     color: "#f87171", bg: "rgba(248,113,113,0.12)", border: "rgba(248,113,113,0.3)" },
+  BATAL:      { label: "Batal",      color: "#f87171", bg: "rgba(248,113,113,0.12)", border: "rgba(248,113,113,0.3)" },
 };
 
 function formatRp(val: string | null) {
@@ -116,26 +116,39 @@ export default function CrmClient({
       alert("Nama proyek, customer, dan PIC wajib diisi!");
       return;
     }
+    
+    // --- PERBAIKAN: Ubah string kosong ("") menjadi null supaya database Neon tidak eror ---
+    const payload = {
+      ...form,
+      projectValue: form.projectValue === "" ? null : form.projectValue,
+      tenderDate: form.tenderDate === "" ? null : form.tenderDate,
+      estimatedFinish: form.estimatedFinish === "" ? null : form.estimatedFinish,
+      location: form.location === "" ? null : form.location,
+      notes: form.notes === "" ? null : form.notes,
+    };
+
     setLoading(true);
     try {
       if (editProject) {
         const res = await fetch(`/api/projects/${editProject.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
+          body: JSON.stringify(payload), // Kirim payload yang sudah bersih
         });
         const data = await res.json();
         if (!res.ok) { alert("Error: " + (data.error ?? res.status)); return; }
         setProjects((prev) => prev.map((p) => (p.id === data.id ? data : p)));
+        alert("Proyek berhasil diperbarui!");
       } else {
         const res = await fetch("/api/projects", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
+          body: JSON.stringify(payload), // Kirim payload yang sudah bersih
         });
         const data = await res.json();
         if (!res.ok) { alert("Error: " + (data.error ?? res.status)); return; }
         setProjects((prev) => [data, ...prev]);
+        alert("Proyek baru berhasil ditambahkan!");
       }
       setShowForm(false);
     } catch (err) {
