@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { inventoryLog, bomMaterials, productionPlans, contracts, projects } from "@/db/schema";
+import { finishedGoods, fgOutbound, productionPlans, contracts, projects } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 import InventoryClient from "@/components/crm/inventory-client";
@@ -13,42 +13,50 @@ export default async function InventoryPage() {
     redirect("/login");
   }
 
-  // Ambil data log inventory
-  const logs = await db
+  // 1. Ambil data stok Finished Goods (FG) di Gudang Proyek
+  const fgStock = await db
     .select({
-      id: inventoryLog.id,
-      transactionType: inventoryLog.transactionType,
-      qty: inventoryLog.qty,
-      unit: inventoryLog.unit,
-      transactionDate: inventoryLog.transactionDate,
-      notes: inventoryLog.notes,
-      materialName: bomMaterials.materialName,
+      id: finishedGoods.id,
+      productName: finishedGoods.productName,
+      stock: finishedGoods.stock,
+      unit: finishedGoods.unit,
       spkNumber: productionPlans.spkNumber,
+      targetVolume: productionPlans.targetVolume,
       projectName: projects.projectName,
+      projectCode: projects.projectCode,
     })
-    .from(inventoryLog)
-    .leftJoin(bomMaterials, eq(inventoryLog.bomId, bomMaterials.id))
-    .leftJoin(productionPlans, eq(inventoryLog.planId, productionPlans.id))
+    .from(finishedGoods)
+    .leftJoin(productionPlans, eq(finishedGoods.planId, productionPlans.id))
     .leftJoin(contracts, eq(productionPlans.contractId, contracts.id))
     .leftJoin(projects, eq(contracts.projectId, projects.id))
-    .orderBy(desc(inventoryLog.transactionDate));
+    .orderBy(desc(finishedGoods.createdAt));
 
-  // Ambil daftar BOM untuk pilihan di Modal
-  const allBomItems = await db
+  // 2. Ambil log pengiriman / pengeluaran FG
+  const fgOutboundLogs = await db
     .select({
-      id: bomMaterials.id,
-      materialName: bomMaterials.materialName,
-      planId: bomMaterials.planId,
-      unit: bomMaterials.unit,
+      id: fgOutbound.id,
+      fgId: fgOutbound.fgId,
+      deliveryNumber: fgOutbound.deliveryNumber,
+      recipient: fgOutbound.recipient,
+      qty: fgOutbound.qty,
+      exitDate: fgOutbound.exitDate,
+      notes: fgOutbound.notes,
+      productName: finishedGoods.productName,
+      projectName: projects.projectName,
+      projectCode: projects.projectCode,
       spkNumber: productionPlans.spkNumber,
     })
-    .from(bomMaterials)
-    .leftJoin(productionPlans, eq(bomMaterials.planId, productionPlans.id));
+    .from(fgOutbound)
+    .innerJoin(finishedGoods, eq(fgOutbound.fgId, finishedGoods.id))
+    .leftJoin(productionPlans, eq(finishedGoods.planId, productionPlans.id))
+    .leftJoin(contracts, eq(productionPlans.contractId, contracts.id))
+    .leftJoin(projects, eq(contracts.projectId, projects.id))
+    .orderBy(desc(fgOutbound.exitDate));
 
   return (
     <InventoryClient 
-      initialLogs={logs} 
-      bomItems={allBomItems} 
+      fgStock={fgStock} 
+      deliveryLogs={fgOutboundLogs} 
       session={session} 
     />
   );

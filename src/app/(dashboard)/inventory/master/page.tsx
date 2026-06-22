@@ -1,5 +1,7 @@
+export const dynamic = 'force-dynamic';
+
 import { db } from "@/db";
-import { materials, materialInbound, materialOutbound } from "@/db/schema";
+import { materials, materialInbound, materialOutbound, productionPlans, bomMaterials, finishedGoods, fgOutbound } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import MasterInventoryClient from "@/components/crm/master-inventory-client";
 import { getSession } from "@/lib/auth";
@@ -7,69 +9,80 @@ import { redirect } from "next/navigation";
 
 export default async function MasterInventoryPage() {
   const session = await getSession();
-  
-  // 1. Proteksi Login
-  if (!session) {
-    redirect("/login");
-  }
+  if (!session) redirect("/login");
 
   try {
-    // 2. Ambil Stok Master Material
-    const allMaterials = await db
-      .select()
-      .from(materials)
-      .orderBy(desc(materials.name)); // Urutkan berdasarkan nama material
+    // --- 1. DATA BAHAN BAKU (RAW MATERIAL) ---
+    const allMaterials = await db.select().from(materials).orderBy(desc(materials.createdAt));
+    const inbounds = await db.select().from(materialInbound).orderBy(desc(materialInbound.entryDate));
+    const outbounds = await db.select().from(materialOutbound).orderBy(desc(materialOutbound.exitDate));
+    
+    const activePlans = await db.select({ id: productionPlans.id }).from(productionPlans).where(eq(productionPlans.status, 'AKTIF'));
+    const activePlanIds = activePlans.map(p => p.id);
+    
+    let allBoms: any[] = [];
+    if (activePlanIds.length > 0) {
+      allBoms = await db.select().from(bomMaterials);
+    }
 
-    // 3. Ambil 10 Riwayat Barang Masuk Terakhir
-    const inboundHistory = await db
-      .select({
-        id: materialInbound.id,
-        materialName: materials.name,
-        vendor: materialInbound.vendorName,
-        qty: materialInbound.qty,
-        date: materialInbound.entryDate,
-      })
-      .from(materialInbound)
-      .leftJoin(materials, eq(materialInbound.materialId, materials.id))
-      .orderBy(desc(materialInbound.entryDate)) // Wajib pakai kolom yang ada!
-      .limit(10);
+    const rawMaterialData = allMaterials.map(mat => {
+      const totalBooked = allBoms
+        .filter(bom => activePlanIds.includes(bom.planId) && bom.materialId === mat.id)
+        .reduce((sum, bom) => sum + Number(bom.estimatedQty || 0), 0);
 
-    // 4. Ambil 10 Riwayat Barang Keluar Terakhir
-    const outboundHistory = await db
-      .select({
-        id: materialOutbound.id,
-        materialName: materials.name,
-        recipient: materialOutbound.recipient,
-        qty: materialOutbound.qty,
-        date: materialOutbound.exitDate,
-      })
-      .from(materialOutbound)
-      .leftJoin(materials, eq(materialOutbound.materialId, materials.id))
-      .orderBy(desc(materialOutbound.exitDate)) // Wajib pakai kolom yang ada!
-      .limit(10);
+      const matInbounds = inbounds.filter(i => i.materialId === mat.id);
+      const matOutbounds = outbounds.filter(o => o.materialId === mat.id);
 
-    return (
+      return {
+        ...mat,
+        stock: Number(mat.stock),
+        bookedAmount: totalBooked,
+        availableAmount: Number(mat.stock) - totalBooked,
+        inbounds: matInbounds,
+        outbounds: matOutbounds
+      };
+    });
+
+    // --- 2. DATA BARANG JADI (FINISHED GOODS) ---
+    const rawFg = await db.select({
+       id: finishedGoods.id,
+       productName: finishedGoods.productName,
+       stock: finishedGoods.stock,
+       unit: finishedGoods.unit,
+       planId: finishedGoods.planId,
+       spkNumber: productionPlans.spkNumber
+    })
+    .from(finishedGoods)
+    .leftJoin(productionPlans, eq(finishedGoods.planId, productionPlans.id))
+    .orderBy(desc(finishedGoods.createdAt));
+
+    const allFgOutbounds = await db.select().from(fgOutbound).orderBy(desc(fgOutbound.exitDate));
+
+    const finishedGoodsData = rawFg.map(fg => {
+        const outbounds = allFgOutbounds.filter(o => o.fgId === fg.id);
+        return {
+            ...fg,
+            outbounds
+        };
+    });
+
+   return (
       <div className="p-8 bg-[#0f172a] min-h-screen text-white">
         <MasterInventoryClient 
-          initialMaterials={allMaterials} 
-          inboundHistory={inboundHistory}
-          outboundHistory={outboundHistory}
+          initialMaterials={rawMaterialData} 
+          inboundHistory={inbounds}
+          outboundHistory={outbounds}
+          finishedGoods={finishedGoodsData} 
+          session={session} // 🔥 INI DIA YANG KETINGGALAN BOSSKU! 🔥
         />
       </div>
     );
-
   } catch (error: any) {
-    console.error("Database Error:", error);
     return (
-      <div className="p-8 text-center bg-[#0f172a] min-h-screen text-white">
-        <div className="bg-red-500/10 border border-red-500 p-6 rounded-2xl max-w-2xl mx-auto">
-          <h1 className="text-xl font-black text-red-500 mb-2 italic">LOGIKA DATABASE PATAH, BOSKU!</h1>
-          <p className="text-slate-400 text-sm mb-4">
-            Erornya: <code className="bg-black/50 p-1 rounded text-red-300">{error.message}</code>
-          </p>
-          <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">
-            SOLUSI: Pastikan sudah ko jalankan 'npx drizzle-kit push' di terminal!
-          </p>
+      <div className="p-8 text-center text-white bg-[#0f172a] min-h-screen">
+        <div className="bg-red-500/10 border border-red-500 p-6 rounded-2xl max-w-2xl mx-auto mt-10">
+          <h1 className="text-xl font-black text-red-500 mb-2">ERROR DATABASE!</h1>
+          <p className="text-slate-400">{error.message}</p>
         </div>
       </div>
     );

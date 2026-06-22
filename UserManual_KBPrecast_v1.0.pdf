@@ -1,0 +1,1966 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 2718
+>>
+stream
+0.5670000000000001 w
+0 G
+0.06 0.46 0.43 RG
+3.4015748031496065 w
+28.3464566929133888 813.5435433070865656 538.5826771653544256 -785.1968503937008563 re
+S
+0.06 0.46 0.43 rg
+255.1181102362205024 714.3309448818897636 85.0393700787401627 -85.0393700787401627 re
+f
+BT
+/F2 18 Tf
+20.6999999999999993 TL
+1. g
+283.4645669291338663 660.4726771653542983 Td
+(KB) Tj
+ET
+BT
+/F2 26 Tf
+29.8999999999999986 TL
+0.059 0.463 0.431 rg
+204.6877952755905881 544.2522047244094665 Td
+(KALLA BETON) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0.278 0.333 0.412 rg
+221.4977952755905619 521.5750393700786844 Td
+(P R E C A S T   S Y S T E M) Tj
+ET
+0.89 0.91 0.94 RG
+1.4173228346456694 w
+113.3858267716535551 487.559291338582625 m
+481.8897637795275841 487.559291338582625 l
+S
+BT
+/F2 20 Tf
+23. TL
+0.118 0.161 0.231 rg
+155.8377952755905653 430.8663779527558404 Td
+(BUKU PANDUAN PENGGUNA) Tj
+ET
+BT
+/F2 14 Tf
+16.0999999999999979 TL
+0.059 0.463 0.431 rg
+119.2777952755905773 408.1892125984251152 Td
+(ERP & CRM Monitoring, Budgeting & Logistik Precast) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.278 0.333 0.412 rg
+120.0352952755906415 360.0002362204724022 Td
+(Buku panduan operasional lengkap dari hulu ke hilir untuk membantu pengguna baru) Tj
+-19.7125000000000341 -10.9249999999999989 Td
+(memahami setiap halaman, form, tombol, dan alur integrasi data di dalam platform KB Precast) Tj
+12.9674999999999656 -10.9249999999999989 Td
+(System. Panduan ini menjelaskan langkah demi langkah pembuatan proyek, RAB, SPK,) Tj
+-12.0649999999999 -10.9249999999999989 Td
+(logistik pengadaan PO, pencatatan BKH Cor harian, hingga tinjauan BEP eksekutif keuangan.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.118 0.161 0.231 rg
+127.5590551181102512 223.9372440944881646 Td
+(Kredensial Default Akun Penguji:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.118 0.161 0.231 rg
+127.5590551181102512 206.9293700787401349 Td
+(• Admin   : username \(admin\)   | password \(admin123\)) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.118 0.161 0.231 rg
+127.5590551181102512 192.7561417322833677 Td
+(• Manager : username \(manager\) | password \(manager123\)) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.118 0.161 0.231 rg
+127.5590551181102512 178.5829133858267141 Td
+(• Staff      : username \(staff\)     | password \(staff123\)) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.278 0.333 0.412 rg
+196.6052952755905778 119.0553543307086102 Td
+(Versi Dokumentasi: 1.0 \(Stabil - Tanpa Gambar\)) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.278 0.333 0.412 rg
+227.6702952755905756 102.0474803149605805 Td
+(Terakhir Diperbarui: 22 Juni 2026) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.278 0.333 0.412 rg
+221.7802952755905324 85.0396062992125508 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 3734
+>>
+stream
+1.4173228346456694 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(1. PENDAHULUAN & HAK AKSES PERAN \(USER ROLES\)) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(Selamat datang di Kalla Beton Precast System. Platform ERP & CRM ini) Tj
+T* (dirancang khusus untuk mengelola operasional produksi beton precast) Tj
+T* (secara digital, teratur, dan transparan. Demi menjaga akurasi data keuangan) Tj
+T* (serta kelancaran logistik bahan baku, sistem menerapkan pembatasan hak) Tj
+T* (akses yang ketat berdasarkan peran jabatan berikut:) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 661.8899999999999864 Td
+(A. Admin \(Administrator\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 646.2994488188976447 Td
+(Memiliki otoritas penuh di seluruh modul sistem. Hanya peran Admin yang dapat mengakses rute) Tj
+T* ('/admin' \(Manajemen Akun\) untuk membuat pengguna baru, melakukan modifikasi akun karyawan,) Tj
+T* (atau menangguhkan akun. Admin juga berhak menghapus data transaksi jika terjadi kesalahan input) Tj
+T* (yang fatal.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 583.9372440944881646 Td
+(B. Manager \(Kepala Divisi / Project Manager\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 568.346692913385823 Td
+(Memiliki wewenang untuk perencanaan anggaran dan otorisasi pengeluaran keuangan. Hanya) Tj
+T* (Manager yang dapat memberikan persetujuan \(approval\) terhadap dokumen RAB \(Rencana Anggaran) Tj
+T* (Biaya\) proyek dan dokumen Purchase Request \(PR\) bahan baku dari staf lapangan. Manager juga) Tj
+T* (berhak menerbitkan SPK produksi dan meninjau Laporan Eksekutif Keuangan.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 505.9844881889763428 Td
+(C. Assistant Manager \(Wakil Manager\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 490.3939370078739444 Td
+(Memiliki hak otorisasi operasional yang setara dengan Manager untuk mempermudah delegasi tugas) Tj
+T* (di lapangan, seperti menerbitkan Surat Perintah Kerja \(SPK\) produksi dan mengelola detail status) Tj
+T* (gudang.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 440.7876377952755433 Td
+(D. Staff \(Staff Lapangan / Operator Gudang / Quality Control\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 425.1970866141731449 Td
+(Merupakan operator harian sistem. Staff bertugas menginput data Buku Kerja Harian \(BKH\) cor) Tj
+T* (produksi, melakukan aksi inspeksi mutu Quality Control \(QC\) per unit precast, mencatat logistik) Tj
+T* (pengeluaran alokasi bahan baku, serta menginput nota pengeluaran kas lapangan \(operational) Tj
+T* (expenses\). Staff secara otomatis diblokir dari menu Laporan Eksekutif Keuangan dan menu) Tj
+T* (Manajemen Akun.) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 2) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+7 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 5570
+>>
+stream
+0.5669291338582678 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(2. SIKLUS HIDUP PROYEK & INTEGRASI DATA) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(Untuk memastikan keakuratan laporan keuangan dan stok barang jadi, setiap) Tj
+T* (proyek precast wajib mengikuti alur kerja standar \(siklus hidup proyek\) di) Tj
+T* (bawah ini. Alur ini menjamin bahwa setiap pengeluaran kas lapangan dapat) Tj
+T* (dibandingkan langsung dengan pagu anggaran RAB secara otomatis.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 674.6459055118109518 Td
+(Tahapan Siklus Hidup Operasional:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 659.0553543307086102 Td
+(•  Tahap 1 - CRM: Mendaftarkan identitas klien, negosiasi harga \(SPH\), dan menerbitkan Kontrak) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 646.2994488188976447 Td
+(Induk Proyek.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 630.7088976377951894 Td
+(•  Tahap 2 - Budgeting: PPIC menyusun RAB detail yang terdiri dari alokasi bahan baku \(BOM\) dan rencana upah tenaga) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 617.952992125984224 Td
+(kerja \(Manpower\).) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 602.3624409448818824 Td
+(•  Tahap 3 - Approval: Manager melakukan review rincian RAB dan menyetujui dokumen tersebut untuk mengaktifkan status) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 589.6065354330708033 Td
+(anggaran.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 574.0159842519684616 Td
+(•  Tahap 4 - Rencana Produksi: Tim PPIC menerbitkan SPK \(Surat Perintah Kerja\) produksi dengan mengunci RAB acuan) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 561.2600787401574962 Td
+(yang telah approved.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 545.6695275590550409 Td
+(•  Tahap 5 - Procurement: Logistik membuat Purchase Order \(PO\) bahan baku ke Supplier Vendor sesuai kebutuhan BOM) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 532.9136220472440755 Td
+(RAB.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 517.3230708661417339 Td
+(•  Tahap 6 - Gudang Pusat: Ketika material supplier tiba di pabrik, staf melakukan verifikasi barang masuk untuk otomatis) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 504.5671653543306547 Td
+(menambah stok.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 488.9766141732283131 Td
+(•  Tahap 7 - Monitoring BKH: Setiap hari cor, operator menginput kuantitas unit cetak GOOD \(Barang Jadi\) dan REJECT) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 476.2207086614172908 Td
+(\(Cacat\).) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 460.6301574803148924 Td
+(•  Tahap 8 - Quality Control: Tim QC memeriksa unit precast individual di grid pelacakan untuk menguji kelayakan fisik.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 445.0396062992125508 Td
+(•  Tahap 9 - Kas Pengeluaran: Staf mencatat pengeluaran kas riil lapangan \(Buku Kerja Harian Kas\) untuk material, upah,) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 432.2837007874015285 Td
+(atau overhead.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 416.69314960629913 Td
+(•  Tahap 10 - Executive Report: Direksi memantau gross profit margin proyek, visualisasi BEP target vs realisasi, dan grafik) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 403.9372440944881077 Td
+(cash flow bulanan.) Tj
+ET
+0.94 0.99 0.98 rg
+0.18 0.83 0.75 RG
+0.8503937007874016 w
+56.6929133858267775 388.3466929133857661 481.8897637795275841 -55.2755905511811108 re
+B
+BT
+/F2 8 Tf
+9.1999999999999993 TL
+0.051 0.58 0.533 rg
+70.8661417322834666 375.5907874015747439 Td
+(Ø=Ü¡   C A T A T A N   I N F O R M A S I :) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.278 0.333 0.412 rg
+70.8661417322834666 361.4175590551180335 Td
+(Data saldo bahan baku di Gudang Pusat dan kuantitas produk precast di Gudang Barang Jadi tersinkronisasi secara) Tj
+T* (otomatis di latar belakang setiap kali Anda mengklik tombol aksi logistik atau menginput data BKH. Jangan melakukan) Tj
+T* (pencatatan manual di luar sistem agar laporan keuangan akhir tidak selisih.) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 3) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+9 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 10 0 R
+>>
+endobj
+10 0 obj
+<<
+/Length 4987
+>>
+stream
+0.5669291338582678 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(3. MODUL CRM & SALES \(KLIEN & KONTRAK\)) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(Modul CRM & Sales digunakan untuk mengelola data prospek pelanggan,) Tj
+T* (melacak proses negosiasi Surat Penawaran Harga \(SPH\), hingga mencatat) Tj
+T* (Kontrak Induk resmi yang ditandatangani oleh klien.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 687.4018110236220309 Td
+(A. Menu CRM & Sales \(Daftar Proyek\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 671.8112598425196893 Td
+(Halaman ini menyajikan tabel seluruh proyek konstruksi yang sedang ditawarkan atau sedang) Tj
+T* (berjalan. Setiap baris proyek menampilkan nama proyek, nama pelanggan, nama PIC Kalla Beton,) Tj
+T* (estimasi nilai penawaran, dan tahapan status proyek.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 622.2049606299212883 Td
+(B. Panduan Tombol Aksi di Halaman CRM:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 606.614409448818833 Td
+(•  Tombol '+ Tambah Proyek Baru': Membuka formulir popup untuk mendaftarkan proyek baru.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 593.8585039370078675 Td
+(Masukkan Nama Proyek, Nama Pelanggan \(Instansi/Klien\), PIC Internal, Estimasi Nilai Penawaran) Tj
+T* (\(Rupiah\), Lokasi, dan Status Proyek. Klik 'Simpan Proyek' untuk mendaftarkan ke database.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 565.5120472440944468 Td
+(•  Tombol 'Edit Proyek' \(Ikon Pensil\): Membuka formulir untuk memperbarui identitas proyek atau menaikkan tahapan status) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 552.7561417322833677 Td
+(proyek \(misal dari TENDER menjadi KONTRAK\).) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 537.1655905511811397 Td
+(•  Tombol 'Hapus' \(Ikon Sampah\): Menghapus proyek dari database \(hanya diizinkan jika proyek belum memiliki dokumen) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 524.4096850393700606 Td
+(kontrak terikat\).) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 503.1498425196849666 Td
+(C. Panduan Tab SPH & Kontrak Induk:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 487.559291338582625 Td
+(Klik pada nama proyek di tabel untuk masuk ke halaman Detail Proyek. Halaman ini memiliki dua) Tj
+T* (sub-tab utama:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 456.378188976377885 Td
+(•  Tab Surat Penawaran Harga \(SPH\): Klik tombol 'Buat Dokumen SPH' untuk mencatat nomor SPH, nilai harga penawaran) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 443.6222834645668627 Td
+(resmi, dan tanggal rilis SPH yang dikirim ke klien.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 428.0317322834645211 Td
+(•  Tab Kontrak & Dokumen PO: Klik tombol 'Buat Kontrak Baru' untuk mencatat nomor kontrak legal. Pilihlah kontrak induk,) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 415.2758267716534988 Td
+(tentukan Nilai Kontrak \(Rupiah\), Tanggal Mulai dan Tanggal Selesai Kontrak, serta Catatan Tambahan. Klik 'Simpan Kontrak') Tj
+T* (untuk mengunci kontrak.) Tj
+ET
+0.94 0.99 0.98 rg
+0.18 0.83 0.75 RG
+0.8503937007874016 w
+56.6929133858267775 386.929370078740078 481.8897637795275841 -42.5196850393700814 re
+B
+BT
+/F2 8 Tf
+9.1999999999999993 TL
+0.051 0.58 0.533 rg
+70.8661417322834666 374.1734645669290558 Td
+(Ø=Ü¡   C A T A T A N   I N F O R M A S I :) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.278 0.333 0.412 rg
+70.8661417322834666 360.0002362204724022 Td
+(Setiap kali status proyek diubah menjadi 'KONTRAK' dan nilai kontrak diinput, sistem akan otomatis menggunakan nilai) Tj
+T* (kontrak ini sebagai dasar perhitungan pendapatan proyek pada Laporan Eksekutif dan pembuatan anggaran RAB.) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 4) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+11 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 12 0 R
+>>
+endobj
+12 0 obj
+<<
+/Length 4567
+>>
+stream
+0.5669291338582678 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(4. MODUL KONTROL BUDGET \(RAB & BUKU KAS\)) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(RAB \(Rencana Anggaran Biaya\) berfungsi sebagai pengunci pagu) Tj
+T* (pengeluaran keuangan proyek. Proyek tidak dapat memulai produksi fisik) Tj
+T* (SPK sebelum memiliki RAB yang disetujui \(Approved\) oleh Manager.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 687.4018110236220309 Td
+(A. Panduan Tombol di Halaman Kontrol Budget:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 671.8112598425196893 Td
+(•  Tombol 'Buat RAB Baru': Membuka formulir pembuatan dokumen RAB awal. Anda wajib memilih) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 659.0553543307086102 Td
+(Kontrak Induk yang aktif, menentukan Target Volume Precast \(misal: 1000\) dan Satuan unit \(misal:) Tj
+T* (pcs\).) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 630.7088976377951894 Td
+(•  Input 'Harga Jual per Unit' \(AUTO / MANUAL\): Secara default \(AUTO\), harga jual unit dihitung dari Nilai Kontrak dibagi) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 617.952992125984224 Td
+(Target Volume. Jika Anda memilih MANUAL, Anda bebas mengetik nominal harga jual kustom per unit precast yang akan) Tj
+T* (disimpan persisten untuk perhitungan Break-Even Point \(BEP\).) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 589.6065354330708033 Td
+(•  Input parameter Biaya Tetap: Masukkan Biaya Tetap \(Fixed Cost\), Depresiasi Cetakan Alat, dan Overhead HO kantor) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 576.8506299212597241 Td
+(pusat \(dalam Rupiah\) untuk menampung biaya tidak langsung proyek.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 555.5907874015747439 Td
+(B. Penyusunan Rincian BOM & Rencana Tenaga Kerja:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 540.0002362204724022 Td
+(Setelah dokumen RAB tersimpan sebagai DRAFT, klik dokumen tersebut untuk membuka panel detail) Tj
+T* (anggaran. Di sini terdapat dua tab input krusial:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 508.8191338582676622 Td
+(•  Tab BOM \(Bill of Materials\): Klik tombol '+ Tambah Bahan Baku'. Pilih item material dari Gudang Pusat \(misal: Semen) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 496.0632283464566399 Td
+(Tonasa\), tentukan estimasi kuantitas kebutuhan total, dan harga beli satuan. Klik 'Simpan BOM'. Nilai ini otomatis menjadi) Tj
+T* (pagu pembatas alokasi material.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 467.716771653543276 Td
+(•  Tab Manpower \(Tenaga Kerja\): Klik tombol '+ Tambah Tenaga Kerja'. Tentukan jumlah kru \(headcount\), peran \(misal:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 454.9608661417322537 Td
+(Tukang Besi\), dan tarif upah harian mereka.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 433.7010236220471597 Td
+(C. Pengajuan & Approval RAB:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 418.1104724409448181 Td
+(Setelah BOM dan Manpower selesai disusun, staf mengklik tombol 'Ajukan RAB' untuk memvalidasi) Tj
+T* (statusnya menjadi PENDING. Akun Manager kemudian masuk dan mengklik tombol hijau 'Setujui) Tj
+T* (RAB' untuk mengaktifkan pagu anggaran dan memicu notifikasi bot Telegram secara otomatis.) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 5) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+13 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 14 0 R
+>>
+endobj
+14 0 obj
+<<
+/Length 4338
+>>
+stream
+0.5669291338582678 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(5. MODUL RENCANA PRODUKSI \(SPK\) & PENGADAAN \(PO\)) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(Modul Rencana Produksi \(SPK\) menerbitkan surat izin pencetakan beton di) Tj
+T* (workshop. Sementara modul Pengadaan \(Procurement\) mengelola) Tj
+T* (pemesanan bahan baku mentah kepada supplier rekanan.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 687.4018110236220309 Td
+(A. Rilis Surat Perintah Kerja \(SPK\) Produksi) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 671.8112598425196893 Td
+(Masuk ke menu Rencana Produksi, klik tombol 'Terbitkan SPK Baru' untuk membuka formulir.) Tj
+T* (Pilihlah Kontrak Induk yang memiliki RAB Approved. Masukkan Target Volume SPK \(tidak boleh) Tj
+T* (melebihi target RAB\), Satuan \(pcs/box\), Tanggal Mulai dan Tanggal Deadline Pengecoran. Klik) Tj
+T* ('Terbitkan SPK' untuk merilis nomor SPK otomatis.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 609.4490551181102092 Td
+(B. Manajemen Pengadaan PO Supplier) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 593.8585039370078675 Td
+(Masuk ke menu Pengadaan & Supplier, halaman ini terbagi menjadi 3 tab utama:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 575.4333070866141497 Td
+(•  Tab Supplier Vendor: Klik '+ Tambah Supplier Baru' untuk mendaftarkan profil supplier material \(Nama Vendor, Telp,) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 562.6774015748030706 Td
+(Alamat, Kategori suplai\).) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 547.086850393700729 Td
+(•  Tab Purchase Orders \(PO\) - Tombol '+ Buat PO Baru': Klik tombol '+ Buat PO Baru' untuk merilis dokumen PO. Pilih) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 534.3309448818897636 Td
+(Supplier, ketik Catatan Pengiriman. Klik tombol '+ Tambah Baris Item' untuk memilih material mentah \(misal: Besi D.13\),) Tj
+T* (masukkan Jumlah Pesan dan Harga Beli per Unit. Klik tombol panah hijau 'Simpan PO'. Status awal PO adalah PENDING.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 505.9844881889763428 Td
+(•  Tombol Aksi 'Kirim PO' & 'Verifikasi Barang Masuk': Ubah status PO menjadi SHIPPED jika barang dikirim. Saat truk) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 493.2285826771653205 Td
+(supplier tiba di pabrik, staf mengklik tombol 'Verifikasi Barang Masuk' pada detail PO. Tindakan ini akan mengubah status) Tj
+T* (PO menjadi COMPLETED, mencatat log barang masuk, dan secara otomatis menambahkan jumlah stok fisik bahan baku) Tj
+T* (tersebut di Gudang Pusat.) Tj
+ET
+0.94 0.99 0.98 rg
+0.18 0.83 0.75 RG
+0.8503937007874016 w
+56.6929133858267775 452.1262204724408775 481.8897637795275841 -42.5196850393700814 re
+B
+BT
+/F2 8 Tf
+9.1999999999999993 TL
+0.051 0.58 0.533 rg
+70.8661417322834666 439.3703149606298552 Td
+(Ø=Ü¡   C A T A T A N   I N F O R M A S I :) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.278 0.333 0.412 rg
+70.8661417322834666 425.1970866141731449 Td
+(Setiap material yang masuk ke gudang pusat via PO supplier akan menggunakan nominal harga beli aktual dari PO) Tj
+T* (untuk dibandingkan dengan estimasi harga beli di BOM RAB demi mendeteksi selisih harga pasar.) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 6) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+15 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 16 0 R
+>>
+endobj
+16 0 obj
+<<
+/Length 4149
+>>
+stream
+0.5669291338582678 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(6. MONITORING BKH HARIAN & QUALITY CONTROL \(QC\)) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(Modul Monitoring BKH adalah halaman operasional harian tempat mencatat) Tj
+T* (hasil cor basah precast dan melakukan inspeksi cacat unit individual demi) Tj
+T* (kenyamanan pelacakan kualitas produk.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 687.4018110236220309 Td
+(A. Menginput Buku Kerja Harian \(BKH\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 671.8112598425196893 Td
+(Masuk ke menu Monitoring BKH, klik tombol '+ Input BKH Harian'. Pilih Nomor SPK aktif terkait,) Tj
+T* (tentukan Tanggal Cetak, dan masukkan kuantitas hasil cetak harian: GOOD \(jumlah precast lolos QC) Tj
+T* (fisik\), REJECT \(jumlah precast cacat saat cetak\), dan RETUR. Tambahkan catatan kendala produksi.) Tj
+T* (Klik 'Simpan BKH'.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 609.4490551181102092 Td
+(B. Logika Barcode Serial Number Otomatis) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 593.8585039370078675 Td
+(Setiap kali Anda menginput jumlah unit GOOD di BKH Harian \(misal: 10 unit\), sistem secara otomatis) Tj
+T* (menerbitkan 10 kode Serial Number unik di database dengan format:) Tj
+T* ('KB-[NoSPK]-[TglCetak]-[RunningNumber]' \(contoh: KB-SPK260001-20260622-0001\). Setiap kode) Tj
+T* (serial number merepresentasikan satu fisik unit precast beton.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 531.4962992125983874 Td
+(C. Papan Grid Pelacakan Unit & Aksi Inspeksi QC) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 515.9057480314959321 Td
+(Masuk ke tab Pelacakan Unit di Monitoring BKH. Buka accordion proyek SPK bersangkutan. Anda) Tj
+T* (akan melihat deretan kotak-kotak grid kecil yang mewakili setiap unit precast berdasarkan serial) Tj
+T* (number-nya:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 471.9687401574802834 Td
+(•  Kotak Berwarna Hijau: Menandakan kondisi unit dalam keadaan baik \(GOOD\) dan siap dikirim.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 456.378188976377885 Td
+(•  Kotak Berwarna Merah: Menandakan kondisi unit dalam keadaan rusak/cacat \(REJECT\).) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 440.7876377952755433 Td
+(•  Tombol Aksi QC 'Jadikan REJECT': Klik pada kotak unit yang diinginkan, ketik Alasan Kerusakan \(misal: keropos bagian) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 428.0317322834645211 Td
+(sudut\), lalu klik tombol 'Jadikan REJECT'. Stok Barang Jadi siap kirim akan otomatis berkurang secara presisi.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 412.4411811023621226 Td
+(•  Tombol Aksi QC 'Jadikan GOOD': Klik pada unit yang reject, lalu klik tombol 'Jadikan GOOD' apabila proses reparasi) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 399.6852755905511003 Td
+(adukan semen telah selesai dilakukan. Stok Barang Jadi akan kembali bertambah.) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 7) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+17 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 18 0 R
+>>
+endobj
+18 0 obj
+<<
+/Length 3841
+>>
+stream
+0.5669291338582678 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(7. LOGISTIK PENGIRIMAN & BUKU KAS PENGELUARAN SPK) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(Modul Logistik Pengiriman mengelola rilis Surat Jalan untuk pengiriman) Tj
+T* (precast ke site proyek. Modul Buku Kas Pengeluaran mencatat realisasi kas) Tj
+T* (riil operasional lapangan.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 687.4018110236220309 Td
+(A. Pengiriman Finished Goods \(Delivery Note / Surat Jalan\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 671.8112598425196893 Td
+(Masuk ke menu Gudang Proyek, buka tab Pengiriman Finished Goods. Klik tombol '+ Buat Delivery) Tj
+T* (Note' untuk merilis surat jalan. Pilih Proyek terkait, pilih item precast, masukkan Jumlah Kirim \(unit) Tj
+T* (yang dikirim akan divalidasi tidak boleh melebihi stok GOOD yang tersedia di Gudang Jadi\),) Tj
+T* (masukkan Nama Driver, Plat Kendaraan, dan Nomor Surat Jalan. Klik 'Simpan Delivery Note'. Stok) Tj
+T* (Gudang Barang Jadi otomatis berkurang.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 596.69314960629913 Td
+(B. Buku Kas Pengeluaran Aktual Proyek \(Expenses\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 581.1025984251967884 Td
+(Masuk ke menu Kontrol Budget, buka tab Pengeluaran Aktual. Klik tombol '+ Catat Pengeluaran) Tj
+T* (Baru'. Pilih SPK Proyek terkait, masukkan Kategori Pengeluaran \(MATERIAL / MANPOWER /) Tj
+T* (OVERHEAD\), tentukan Nominal Pengeluaran \(Rupiah\), Tanggal Nota, dan berikan Catatan/Keterangan) Tj
+T* (Detail transaksi. Klik 'Simpan Pengeluaran'.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 518.7403937007873083 Td
+(C. Logika Warning Over-Budget \(>90%\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 503.1498425196849666 Td
+(Setiap kali Anda menyimpan pengeluaran baru atau realisasi belanja PO supplier, sistem di backend) Tj
+T* (akan menjumlahkan seluruh biaya aktual proyek tersebut secara real-time dan membaginya dengan) Tj
+T* (total pagu anggaran RAB. Jika hasil rasio belanja mencapai atau melebihi 90% \(0.90\), sistem secara) Tj
+T* (otomatis memicu Bot Telegram untuk mengirimkan pesan peringatan darurat ke grup koordinasi) Tj
+T* (manajer.) Tj
+ET
+1. 0.95 0.95 rg
+0.97 0.44 0.44 RG
+0.8503937007874016 w
+56.6929133858267775 433.7010236220471597 481.8897637795275841 -42.5196850393700814 re
+B
+BT
+/F2 8 Tf
+9.1999999999999993 TL
+0.863 0.149 0.149 rg
+70.8661417322834666 420.9451181102361375 Td
+(Ø=Þ¨   P E R I N G A T A N   P E N T I N G :) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.278 0.333 0.412 rg
+70.8661417322834666 406.7718897637794839 Td
+(Nominal pengeluaran kas aktual yang dicatat harian di tab ini akan langsung disinkronkan ke halaman Laporan Eksekutif) Tj
+T* (Keuangan sebagai pengurang pendapatan \(biaya aktual\) untuk menghitung laba kotor proyek.) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 8) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+19 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 20 0 R
+>>
+endobj
+20 0 obj
+<<
+/Length 3679
+>>
+stream
+0.5669291338582678 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(8. LAPORAN EKSEKUTIF DIREKSI & TELEGRAM BOT) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(Halaman Laporan Eksekutif adalah dashboard khusus manajemen puncak) Tj
+T* (untuk mengevaluasi kelayakan ekonomi proyek dan likuiditas kas operasional) Tj
+T* (pabrik precast.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 687.4018110236220309 Td
+(A. Analisis Gross Profit Margin \(Margin Laba Kotor\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 671.8112598425196893 Td
+(Menampilkan perbandingan pendapatan kontrak terhadap biaya aktual. Pendapatan diambil dari Nilai) Tj
+T* (Kontrak, sedangkan Biaya Aktual adalah akumulasi belanja PO supplier ditambah biaya operasional) Tj
+T* (kas lapangan yang tercatat. Proyeksi margin ditampilkan dalam persentase untuk mendeteksi) Tj
+T* (kerugian sedini mungkin.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 609.4490551181102092 Td
+(B. Analisis Break-Even Point \(BEP\) Volume) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 593.8585039370078675 Td
+(Menghitung volume cetak minimum \(dalam unit\) agar pendapatan proyek menutupi biaya tetap \(Fixed) Tj
+T* (Cost + Depresiasi Alat + Overhead HO\). Nilai BEP Volume dibandingkan langsung dengan kuantitas) Tj
+T* (precast GOOD yang telah sukses dicetak di lapangan. Jika volume GOOD melebihi target BEP) Tj
+T* (Volume, bar proyek akan menampilkan label hijau 'BEP Tercapai' yang menandakan proyek sudah) Tj
+T* (menghasilkan profit bersih bagi perusahaan.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 518.7403937007873083 Td
+(C. Notifikasi Otomatis Bot Telegram) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 503.1498425196849666 Td
+(Platform terhubung ke Bot Telegram untuk notifikasi instan. Token bot dan Chat ID grup diatur pada) Tj
+T* (file konfigurasi '.env.local'. Pemicu notifikasi otomatis terjadi pada 3 kondisi: \(1\) RAB Baru Disetujui) Tj
+T* (oleh Manager, \(2\) Batas Stok Bahan Baku Kritis di bawah batas aman Gudang Pusat, dan \(3\) Biaya) Tj
+T* (Pengeluaran Aktual SPK mencapai lebih dari 90% dari pagu anggaran.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 440.7876377952755433 Td
+(D. Tombol Aksi di Halaman Laporan Eksekutif:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 425.1970866141731449 Td
+(•  Tombol 'Refresh data' \(Ikon Putar Ulang\): Menginstruksikan server untuk memproses ulang) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 412.4411811023621226 Td
+(seluruh agregasi transaksi keuangan, BEP, dan cash flow bulanan terupdate dari database.) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 9) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+21 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 22 0 R
+>>
+endobj
+22 0 obj
+<<
+/Length 5740
+>>
+stream
+0.5669291338582678 w
+0.89 0.91 0.94 RG
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.463 0.431 rg
+56.6929133858267775 759.6852755905511003 Td
+(9. MANAJEMEN AKUN & TROUBLESHOOTING) Tj
+ET
+0.06 0.46 0.43 RG
+1.1338582677165356 w
+56.6929133858267775 754.0159842519684616 m
+538.5826771653544256 754.0159842519684616 l
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 737.0081102362204319 Td
+(Modul terakhir membahas administrasi pengguna, preferensi visual profil) Tj
+T* (pribadi, dan tabel penanganan masalah operasional harian.) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 700.15771653543311 Td
+(A. Manajemen Akun Karyawan & Profil) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 684.5671653543306547 Td
+(•  Tombol 'Tambah Akun Baru' \(Khusus Admin\): Membuat profil login karyawan baru dengan) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 671.8112598425196893 Td
+(menetapkan username, password, nama lengkap, dan tingkat jabatan \(Admin/Manager/Assistant) Tj
+T* (Manager/Staff\).) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 643.4648031496062686 Td
+(•  Tombol 'Suspend Akun' \(Ikon Silang\): Membekukan akun karyawan sehingga diblokir dari sistem tanpa menghapus data) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 630.7088976377951894 Td
+(historis inputannya.) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+56.6929133858267775 615.1183464566928478 Td
+(•  Tombol 'Toggle Dark Mode' \(Ikon Bulan/Matahari\): Mengubah warna visual tema aplikasi dari Terang ke Gelap Premium) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.278 0.333 0.412 rg
+65.1968503937007995 602.3624409448818824 Td
+(secara instan \(tersimpan di browser localStorage\).) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.118 0.161 0.231 rg
+56.6929133858267775 581.1025984251967884 Td
+(B. Tabel Panduan Masalah \(Troubleshooting Guide\):) Tj
+ET
+0.06 0.46 0.43 rg
+56.6929133858267775 565.5120472440944468 481.8897637795275841 -25.5118110236220517 re
+f
+BT
+/F2 7.5 Tf
+8.625 TL
+1. g
+62.3622047244094517 548.5041732283464171 Td
+(Gejala Masalah) Tj
+ET
+BT
+/F2 7.5 Tf
+8.625 TL
+1. g
+175.748031496063021 548.5041732283464171 Td
+(Kemungkinan Penyebab) Tj
+ET
+BT
+/F2 7.5 Tf
+8.625 TL
+1. g
+331.6535433070866361 548.5041732283464171 Td
+(Solusi Penanganan) Tj
+ET
+0.97 0.98 0.99 rg
+56.6929133858267775 540.0002362204724022 481.8897637795275841 -25.5118110236220517 re
+f
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 514.4884251968503577 m
+538.5826771653544256 514.4884251968503577 l
+S
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 522.9923622047243725 Td
+(Error 'No transactions support in) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+175.748031496063021 522.9923622047243725 Td
+(Driver database Neon HTTP tidak mendukung) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+331.6535433070866361 522.9923622047243725 Td
+(Sudah Teratasi penuh pada pembaruan Juni 2026 dengan) Tj
+ET
+0.97 0.98 0.99 rg
+56.6929133858267775 514.4884251968503577 481.8897637795275841 -25.5118110236220517 re
+f
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 488.9766141732282563 m
+538.5826771653544256 488.9766141732282563 l
+S
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 497.480551181102328 Td
+(Notifikasi bot Telegram tidak) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+175.748031496063021 497.480551181102328 Td
+(Token bot atau Chat ID grup pada file) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+331.6535433070866361 497.480551181102328 Td
+(Masukkan bot token dari @BotFather dan chat ID dari) Tj
+ET
+0.97 0.98 0.99 rg
+56.6929133858267775 488.9766141732282563 481.8897637795275841 -25.5118110236220517 re
+f
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 463.4648031496062117 m
+538.5826771653544256 463.4648031496062117 l
+S
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 471.9687401574802834 Td
+(Stok bahan baku gudang tidak) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+175.748031496063021 471.9687401574802834 Td
+(Status dokumen PO masih PENDING atau) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+331.6535433070866361 471.9687401574802834 Td
+(Stok otomatis bertambah HANYA ketika Anda mengklik tombol) Tj
+ET
+0.97 0.98 0.99 rg
+56.6929133858267775 463.4648031496062117 481.8897637795275841 -25.5118110236220517 re
+f
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 437.9529921259841672 m
+538.5826771653544256 437.9529921259841672 l
+S
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 446.4569291338582389 Td
+(Gagal menginput pengeluaran) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+175.748031496063021 446.4569291338582389 Td
+(Stok atau anggaran melebihi batas yang) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.118 0.161 0.231 rg
+331.6535433070866361 446.4569291338582389 Td
+(Periksa limit sisa anggaran pada tab Kontrol Budget sebelum) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 807.8742519685039269 Td
+(Kalla Beton Precast System — Buku Panduan Pengguna \(User Manual\)) Tj
+ET
+0.89 0.91 0.94 RG
+0.5669291338582678 w
+56.6929133858267775 802.2049606299211746 m
+538.5826771653544256 802.2049606299211746 l
+S
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+493.2283464566929752 34.0159842519684616 Td
+(Halaman 10) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 34.0159842519684616 Td
+(Kalla Beton Precast Division © 2026) Tj
+ET
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R ]
+/Count 10
+>>
+endobj
+23 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+24 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+25 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+26 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+27 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+28 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+29 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+30 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+31 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+32 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+33 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+34 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+35 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+36 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 23 0 R
+/F2 24 0 R
+/F3 25 0 R
+/F4 26 0 R
+/F5 27 0 R
+/F6 28 0 R
+/F7 29 0 R
+/F8 30 0 R
+/F9 31 0 R
+/F10 32 0 R
+/F11 33 0 R
+/F12 34 0 R
+/F13 35 0 R
+/F14 36 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+37 0 obj
+<<
+/Producer (jsPDF 4.2.1)
+/CreationDate (D:20260622114649+08'00')
+>>
+endobj
+38 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 39
+0000000000 65535 f 
+0000045248 00000 n 
+0000047131 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000002922 00000 n 
+0000003059 00000 n 
+0000006845 00000 n 
+0000006982 00000 n 
+0000012604 00000 n 
+0000012742 00000 n 
+0000017782 00000 n 
+0000017921 00000 n 
+0000022541 00000 n 
+0000022680 00000 n 
+0000027071 00000 n 
+0000027210 00000 n 
+0000031412 00000 n 
+0000031551 00000 n 
+0000035445 00000 n 
+0000035584 00000 n 
+0000039316 00000 n 
+0000039455 00000 n 
+0000045366 00000 n 
+0000045492 00000 n 
+0000045623 00000 n 
+0000045757 00000 n 
+0000045895 00000 n 
+0000046019 00000 n 
+0000046148 00000 n 
+0000046280 00000 n 
+0000046416 00000 n 
+0000046544 00000 n 
+0000046671 00000 n 
+0000046800 00000 n 
+0000046933 00000 n 
+0000047035 00000 n 
+0000047384 00000 n 
+0000047470 00000 n 
+trailer
+<<
+/Size 39
+/Root 38 0 R
+/Info 37 0 R
+/ID [ <A39BC4210272CD1F41C8B6ACCFBB0783> <A39BC4210272CD1F41C8B6ACCFBB0783> ]
+>>
+startxref
+47574
+%%EOF

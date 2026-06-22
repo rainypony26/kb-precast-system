@@ -9,7 +9,7 @@ export type SessionPayload = {
   userId: string;
   username: string;
   fullName: string;
-  role: "admin" | "manager" | "staff";
+  role: "admin" | "manager" | "staff" | "assistant_manager";
 };
 
 // Buat JWT token

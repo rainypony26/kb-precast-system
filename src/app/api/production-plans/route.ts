@@ -11,53 +11,43 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // 1. Validasi data dasar (Tanpa tanggal karena ditarik otomatis)
     if (!body.contractId || !body.targetVolume) {
       return NextResponse.json({ error: "Data SPK tidak lengkap!" }, { status: 400 });
     }
 
-    // 2. AMBIL TANGGAL DARI KONTRAK (Inheritance Logic)
     const contractData = await db
-      .select({
-        startDate: contracts.startDate,
-        endDate: contracts.endDate,
-      })
+      .select({ startDate: contracts.startDate, endDate: contracts.endDate })
       .from(contracts)
       .where(eq(contracts.id, body.contractId))
       .limit(1);
 
-    if (!contractData.length) {
-      return NextResponse.json({ error: "Kontrak tidak ditemukan!" }, { status: 404 });
-    }
+    if (!contractData.length) return NextResponse.json({ error: "Kontrak tidak ditemukan!" }, { status: 404 });
 
     const { startDate, endDate } = contractData[0];
-
-    // 3. Buat Nomor SPK Otomatis
     const year = new Date().getFullYear();
     const result = await db.select({ count: sql<number>`count(*)::int` }).from(productionPlans);
     const count = result[0]?.count || 0;
     const spkNumber = `SPK-${year}-${String(count + 1).padStart(4, "0")}`;
 
-    // 4. Insert Production Plan (Penerapan Tanggal Otomatis)
     const [plan] = await db.insert(productionPlans).values({
       contractId: body.contractId,
+      rabId: body.rabId || null, // 🔥 Hubungkan ke RAB acuan
       spkNumber: spkNumber,
       targetVolume: Number(body.targetVolume),
       unit: body.unit || "pcs",
-      
-      // OTOMATIS: Menggunakan tanggal dari kontrak asal
       commenceDate: new Date(startDate),
       deadlineDate: new Date(endDate),
-      
       status: "AKTIF",
       notes: body.notes || null,
     }).returning();
 
-    // 5. Simpan BOM Materials (Menyesuaikan key dari frontend: bomItems)
-    const items = body.bomItems || body.bom; // Support dua versi key
+    // 🔥 SIMPAN MATERIAL ID DARI GUDANG PUSAT 🔥
+    const items = body.bomItems || body.bom;
     if (items && items.length > 0) {
       const bomData = items.map((item: any) => ({
         planId: plan.id,
+        rabId: body.rabId || null, // 🔥 Hubungkan BOM ke RAB acuan jika ada
+        materialId: item.materialId || null, // <--- TERSAMBUNG KE GUDANG
         materialName: item.materialName,
         estimatedQty: item.estimatedQty?.toString() || item.qty?.toString(),
         unit: item.unit,
@@ -68,11 +58,11 @@ export async function POST(req: NextRequest) {
       await db.insert(bomMaterials).values(bomData);
     }
 
-    // 6. Simpan Manpower (Menyesuaikan key dari frontend: manpowerItems)
-    const crews = body.manpowerItems || body.manpower; // Support dua versi key
+    const crews = body.manpowerItems || body.manpower;
     if (crews && crews.length > 0) {
       const mpData = crews.map((mp: any) => ({
         planId: plan.id,
+        rabId: body.rabId || null, // 🔥 Hubungkan Manpower ke RAB acuan jika ada
         sourceType: mp.sourceType,
         headcount: Number(mp.headcount),
         roleDescription: mp.roleDescription,
@@ -82,9 +72,15 @@ export async function POST(req: NextRequest) {
       await db.insert(manpowerPlans).values(mpData);
     }
 
-    return NextResponse.json(plan, { status: 201 });
+    const finalBoms = await db.select().from(bomMaterials).where(eq(bomMaterials.planId, plan.id));
+    const finalMps = await db.select().from(manpowerPlans).where(eq(manpowerPlans.planId, plan.id));
+
+    return NextResponse.json({
+      ...plan,
+      bomItems: finalBoms,
+      manpowerItems: finalMps
+    }, { status: 201 });
   } catch (err: any) {
-    console.error("SPK ERROR:", err);
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }

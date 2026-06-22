@@ -2,10 +2,14 @@
 
 import { useState, useMemo } from "react";
 import type { SessionPayload } from "@/lib/auth";
+import { Search, Plus, X, Check, Edit2, Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+// ─── TYPES ───────────────────────────────────────────────────────────────────
 
 type Project = {
-  id: string; // Ganti ke string karena kita pakai UUID
-  projectCode: string | null; // Tambahkan | null supaya Vercel aman
+  id: string; 
+  projectCode: string | null;
   projectName: string;
   customerName: string;
   picName: string;
@@ -21,17 +25,21 @@ type Project = {
 
 type User = { id: string; fullName: string };
 
+// ─── CONSTANTS & META ────────────────────────────────────────────────────────
+
 const STATUS_LIST = ["TENDER", "PENAWARAN", "NEGO", "PO", "KONTRAK", "SELESAI", "BATAL"];
 
-const STATUS_META: Record<string, { label: string; color: string; bg: string; border: string }> = {
-  TENDER:     { label: "Tender",     color: "#94a3b8", bg: "rgba(148,163,184,0.12)", border: "rgba(148,163,184,0.3)" },
-  PENAWARAN: { label: "Penawaran", color: "#60a5fa", bg: "rgba(96,165,250,0.12)",  border: "rgba(96,165,250,0.3)" },
-  NEGO:       { label: "Nego",       color: "#fbbf24", bg: "rgba(251,191,36,0.12)",  border: "rgba(251,191,36,0.3)" },
-  PO:         { label: "PO",         color: "#c084fc", bg: "rgba(192,132,252,0.12)", border: "rgba(192,132,252,0.3)" },
-  KONTRAK:    { label: "Kontrak",    color: "#4ade80", bg: "rgba(74,222,128,0.12)",  border: "rgba(74,222,128,0.3)" },
-  SELESAI:    { label: "Selesai",    color: "#34d399", bg: "rgba(52,211,153,0.12)",  border: "rgba(52,211,153,0.3)" },
-  BATAL:      { label: "Batal",      color: "#f87171", bg: "rgba(248,113,113,0.12)", border: "rgba(248,113,113,0.3)" },
+const STATUS_META: Record<string, { label: string; textClass: string; bgClass: string; borderClass: string }> = {
+  TENDER:     { label: "Tender",     textClass: "text-slate-600 dark:text-slate-400", bgClass: "bg-slate-50 dark:bg-slate-900", borderClass: "border-slate-200 dark:border-slate-800" },
+  PENAWARAN: { label: "Penawaran", textClass: "text-blue-700 dark:text-blue-400", bgClass: "bg-blue-50 dark:bg-blue-950/20",  borderClass: "border-blue-100 dark:border-blue-900/30" },
+  NEGO:       { label: "Nego",       textClass: "text-amber-755 dark:text-amber-400", bgClass: "bg-amber-50 dark:bg-amber-950/20",   borderClass: "border-amber-100 dark:border-amber-900/30" },
+  PO:         { label: "PO",         textClass: "text-purple-700 dark:text-purple-400", bgClass: "bg-purple-50 dark:bg-purple-950/20",  borderClass: "border-purple-100 dark:border-purple-900/30" },
+  KONTRAK:    { label: "Kontrak",    textClass: "text-emerald-700 dark:text-emerald-400", bgClass: "bg-emerald-50 dark:bg-emerald-950/20",   borderClass: "border-emerald-100 dark:border-emerald-900/30" },
+  SELESAI:    { label: "Selesai",    textClass: "text-teal-700 dark:text-teal-400", bgClass: "bg-teal-50 dark:bg-teal-950/20",  borderClass: "border-teal-100 dark:border-teal-900/30" },
+  BATAL:      { label: "Batal",      textClass: "text-red-700 dark:text-red-400", bgClass: "bg-red-50 dark:bg-red-950/20",   borderClass: "border-red-100 dark:border-red-900/30" },
 };
+
+// ─── HELPERS ──────────────────────────────────────────────────────────────────
 
 function formatRp(val: string | null) {
   if (!val) return "-";
@@ -65,7 +73,6 @@ export default function CrmClient({
   const [statusLoading, setStatusLoading] = useState<string | null>(null);
   const [detailProject, setDetailProject] = useState<Project | null>(null);
 
-  // Stats
   const stats = useMemo(() => {
     const s: Record<string, number> = {};
     STATUS_LIST.forEach((k) => (s[k] = 0));
@@ -73,7 +80,6 @@ export default function CrmClient({
     return s;
   }, [projects]);
 
-  // Filter + search
   const filtered = useMemo(() => {
     return projects.filter((p) => {
       const matchStatus = filterStatus === "ALL" || p.status === filterStatus;
@@ -117,7 +123,6 @@ export default function CrmClient({
       return;
     }
     
-    // --- PERBAIKAN: Ubah string kosong ("") menjadi null supaya database Neon tidak eror ---
     const payload = {
       ...form,
       projectValue: form.projectValue === "" ? null : form.projectValue,
@@ -133,7 +138,7 @@ export default function CrmClient({
         const res = await fetch(`/api/projects/${editProject.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload), // Kirim payload yang sudah bersih
+          body: JSON.stringify(payload),
         });
         const data = await res.json();
         if (!res.ok) { alert("Error: " + (data.error ?? res.status)); return; }
@@ -143,7 +148,7 @@ export default function CrmClient({
         const res = await fetch("/api/projects", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload), // Kirim payload yang sudah bersih
+          body: JSON.stringify(payload),
         });
         const data = await res.json();
         if (!res.ok) { alert("Error: " + (data.error ?? res.status)); return; }
@@ -182,294 +187,336 @@ export default function CrmClient({
   }
 
   return (
-    <>
-      <style>{`
-        .crm-wrap { min-height:100vh; background:#0f172a; padding:2rem; }
-        .stat-pill { display:flex; flex-direction:column; align-items:center; justify-content:center;
-          padding:.75rem 1.25rem; border-radius:.75rem; cursor:pointer; transition:all .15s; min-width:90px; }
-        .stat-pill:hover { filter:brightness(1.1); }
-        .tbl-row { transition:background .12s; }
-        .tbl-row:hover { background:#162032; }
-        .btn-green { background:#16a34a; color:#fff; border:none; border-radius:.6rem;
-          padding:.5rem 1.25rem; font-size:.85rem; font-weight:600; cursor:pointer; transition:background .15s; }
-        .btn-green:hover { background:#15803d; }
-        .btn-ghost { background:transparent; color:#94a3b8; border:1px solid #334155;
-          border-radius:.6rem; padding:.4rem 1rem; font-size:.8rem; cursor:pointer; transition:all .15s; }
-        .btn-ghost:hover { border-color:#4ade80; color:#4ade80; }
-        .btn-danger { background:transparent; color:#f87171; border:1px solid rgba(248,113,113,.3);
-          border-radius:.6rem; padding:.4rem .8rem; font-size:.8rem; cursor:pointer; transition:all .15s; }
-        .btn-danger:hover { background:rgba(248,113,113,.1); }
-        .inp { width:100%; background:#1e293b; border:1px solid #334155; border-radius:.6rem;
-          color:#f1f5f9; font-size:.875rem; padding:.55rem .85rem; outline:none; transition:border-color .15s; box-sizing:border-box; }
-        .inp:focus { border-color:#4ade80; }
-        .inp::placeholder { color:#475569; }
-        .overlay { position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:50;
-          display:flex; align-items:center; justify-content:center; padding:1rem; }
-        .modal { background:#1e293b; border:1px solid #334155; border-radius:1.25rem;
-          width:100%; max-width:600px; max-height:90vh; overflow-y:auto; padding:2rem; }
-        .label { font-size:.78rem; color:#64748b; margin-bottom:.3rem; display:block; font-weight:500; letter-spacing:.03em; }
-        .status-badge { display:inline-flex; align-items:center; padding:.25rem .75rem;
-          border-radius:999px; font-size:.75rem; font-weight:600; border:1px solid; }
-        .select-status { background:#0f172a; border:1px solid #334155; border-radius:.5rem;
-          color:#f1f5f9; font-size:.8rem; padding:.3rem .6rem; cursor:pointer; outline:none; }
-        .detail-overlay { position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:40;
-          display:flex; align-items:flex-start; justify-content:flex-end; }
-        .detail-panel { background:#1e293b; border-left:1px solid #334155; width:420px;
-          height:100vh; overflow-y:auto; padding:2rem; }
-        .pipeline-step { display:flex; align-items:center; gap:.5rem; padding:.5rem .75rem;
-          border-radius:.5rem; font-size:.8rem; font-weight:600; cursor:pointer;
-          border:1px solid transparent; transition:all .15s; }
-        .pipeline-step:hover { filter:brightness(1.15); }
-      `}</style>
+    <div className="p-8 min-h-screen text-slate-800 dark:text-slate-100 bg-background font-sans">
+      
+      {/* ─── HEADER ─── */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 bg-card p-6 rounded-2xl border border-border shadow-sm">
+        <div>
+          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">CRM & Pipeline Proyek</h1>
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">Kelola data tender, negosiasi, dan PO proyek dalam satu alur kerja</p>
+        </div>
+        <button 
+          className="flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold text-xs rounded-xl shadow-sm transition-all duration-200 cursor-pointer"
+          onClick={openAdd}
+        >
+          <Plus className="w-4 h-4" />
+          Tambah Proyek
+        </button>
+      </div>
 
-      <div className="crm-wrap">
-        {/* Header */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"1.5rem" }}>
-          <div>
-            <h1 style={{ color:"#f1f5f9", fontSize:"1.4rem", fontWeight:700, margin:0 }}>CRM & Sales Pipeline</h1>
-            <p style={{ color:"#64748b", fontSize:".85rem", margin:".25rem 0 0" }}>Kelola semua proyek dari tender hingga kontrak</p>
-          </div>
-          <button className="btn-green" onClick={openAdd}>+ Tambah Proyek</button>
+      {/* ─── STATUS SUMMARY CARD PILLS ─── */}
+      <div className="flex gap-3 overflow-x-auto pb-3 mb-6 custom-scrollbar shrink-0">
+        <div
+          className={cn(
+            "flex flex-col justify-center min-w-[100px] p-4 rounded-xl cursor-pointer border transition-all shadow-sm",
+            filterStatus === "ALL" 
+              ? "bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50" 
+              : "bg-card border-border hover:border-slate-300 dark:hover:border-slate-700"
+          )}
+          onClick={() => setFilterStatus("ALL")}
+        >
+          <span className="text-xl font-black text-slate-900 dark:text-white">{projects.length}</span>
+          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold mt-1 uppercase">Semua</span>
         </div>
 
-        {/* Status Summary Pills */}
-        <div style={{ display:"flex", gap:".75rem", flexWrap:"wrap", marginBottom:"1.5rem" }}>
-          <div
-            className="stat-pill"
-            onClick={() => setFilterStatus("ALL")}
-            style={{
-              background: filterStatus === "ALL" ? "rgba(74,222,128,0.12)" : "#1e293b",
-              border: `1px solid ${filterStatus === "ALL" ? "rgba(74,222,128,0.4)" : "#334155"}`,
-            }}>
-            <span style={{ color:"#f1f5f9", fontSize:"1.4rem", fontWeight:700 }}>{projects.length}</span>
-            <span style={{ color:"#64748b", fontSize:".72rem", marginTop:".1rem" }}>Semua</span>
-          </div>
-          {STATUS_LIST.map((s) => {
-            const m = STATUS_META[s];
-            const active = filterStatus === s;
-            return (
-              <div
-                key={s}
-                className="stat-pill"
-                onClick={() => setFilterStatus(active ? "ALL" : s)}
-                style={{
-                  background: active ? m.bg : "#1e293b",
-                  border: `1px solid ${active ? m.border : "#334155"}`,
-                }}>
-                <span style={{ color: m.color, fontSize:"1.4rem", fontWeight:700 }}>{stats[s]}</span>
-                <span style={{ color:"#64748b", fontSize:".72rem", marginTop:".1rem" }}>{m.label}</span>
-              </div>
-            );
-          })}
-        </div>
+        {STATUS_LIST.map((s) => {
+          const m = STATUS_META[s];
+          const isActive = filterStatus === s;
+          return (
+            <div
+              key={s}
+              className={cn(
+                "flex flex-col justify-center min-w-[100px] p-4 rounded-xl cursor-pointer border transition-all shadow-sm",
+                isActive 
+                  ? `${m.bgClass} ${m.borderClass}` 
+                  : "bg-card border-border hover:border-slate-300 dark:hover:border-slate-700"
+              )}
+              onClick={() => setFilterStatus(isActive ? "ALL" : s)}
+            >
+              <span className={cn("text-xl font-black", isActive ? m.textClass : "text-slate-800 dark:text-slate-200")}>
+                {stats[s]}
+              </span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold mt-1 uppercase">{m.label}</span>
+            </div>
+          );
+        })}
+      </div>
 
-        {/* Search + filter bar */}
-        <div style={{ display:"flex", gap:".75rem", marginBottom:"1.25rem", alignItems:"center" }}>
-          <div style={{ position:"relative", flex:1 }}>
-            <svg style={{ position:"absolute", left:".75rem", top:"50%", transform:"translateY(-50%)" }}
-              width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#475569" strokeWidth={2}>
-              <circle cx="11" cy="11" r="8"/><path strokeLinecap="round" d="M21 21l-4.35-4.35"/>
-            </svg>
-            <input
-              className="inp"
-              style={{ paddingLeft:"2.25rem" }}
-              placeholder="Cari nama proyek, customer, PIC, lokasi..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-          <select
-            className="select-status"
-            style={{ padding:".55rem 1rem", fontSize:".85rem" }}
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}>
-            <option value="ALL">Semua Status</option>
-            {STATUS_LIST.map((s) => <option key={s} value={s}>{STATUS_META[s].label}</option>)}
-          </select>
+      {/* ─── SEARCH & FILTER BAR ─── */}
+      <div className="flex flex-col sm:flex-row gap-3 mb-6 items-stretch sm:items-center">
+        <div className="relative flex-1">
+          <Search className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
+          <input
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-card text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 transition-all text-xs font-semibold"
+            placeholder="Cari nama proyek, customer, PIC, atau lokasi..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
+        <select
+          className="px-4 py-2.5 rounded-xl border border-border bg-card text-xs font-bold text-slate-700 dark:text-slate-300 focus:outline-none focus:border-emerald-600"
+          value={filterStatus}
+          onChange={(e) => setFilterStatus(e.target.value)}
+        >
+          <option value="ALL">Semua Status</option>
+          {STATUS_LIST.map((s) => (
+            <option key={s} value={s}>{STATUS_META[s].label}</option>
+          ))}
+        </select>
+      </div>
 
-        {/* Table */}
-        <div style={{ background:"#1e293b", border:"1px solid #334155", borderRadius:"1rem", overflow:"hidden" }}>
-          <div style={{ overflowX:"auto" }}>
-            <table style={{ width:"100%", borderCollapse:"collapse", fontSize:".85rem" }}>
-              <thead>
-                <tr style={{ borderBottom:"1px solid #334155", background:"#162032" }}>
-                  {["Kode","Nama Proyek","Customer / PIC","Lokasi","Nilai Proyek","Tgl Mulai","Tgl Selesai","Status","Aksi"].map((h) => (
-                    <th key={h} style={{ padding:".75rem 1rem", color:"#64748b", fontWeight:600,
-                      fontSize:".75rem", textAlign:"left", whiteSpace:"nowrap" }}>{h}</th>
-                  ))}
+      {/* ─── DATA TABLE ─── */}
+      <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr className="border-b border-border text-slate-500 dark:text-slate-400 font-bold bg-slate-50/50 dark:bg-slate-900/20">
+                <th className="p-4">Kode</th>
+                <th className="p-4">Nama Proyek</th>
+                <th className="p-4">Customer / PIC</th>
+                <th className="p-4">Lokasi</th>
+                <th className="p-4">Nilai Proyek</th>
+                <th className="p-4">Mulai</th>
+                <th className="p-4">Selesai</th>
+                <th className="p-4">Status</th>
+                <th className="p-4 text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="p-8 text-center text-slate-400 italic">
+                    {search || filterStatus !== "ALL" ? "Tidak ada proyek yang cocok dengan filter" : "Belum ada proyek terdaftar. Klik + Tambah Proyek"}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {filtered.length === 0 && (
-                  <tr>
-                    <td colSpan={9} style={{ padding:"3rem", textAlign:"center", color:"#475569" }}>
-                      {search || filterStatus !== "ALL" ? "Tidak ada proyek yang cocok" : "Belum ada proyek. Klik + Tambah Proyek"}
-                    </td>
-                  </tr>
-                )}
-                {filtered.map((p) => {
+              ) : (
+                filtered.map((p) => {
                   const m = STATUS_META[p.status];
                   return (
-                    <tr key={p.id} className="tbl-row" style={{ borderBottom:"1px solid #1e293b" }}>
-                      <td style={{ padding:".7rem 1rem", color:"#64748b", whiteSpace:"nowrap", fontFamily:"monospace", fontSize:".8rem" }}>
-                        {p.projectCode}
+                    <tr key={p.id} className="hover:bg-slate-50/30 dark:hover:bg-slate-800/10 transition-colors">
+                      <td className="p-4 text-slate-400 dark:text-slate-500 font-semibold font-mono text-[10px]">
+                        {p.projectCode || "N/A"}
                       </td>
-                      <td style={{ padding:".7rem 1rem" }}>
+                      <td className="p-4 font-bold text-slate-800 dark:text-white max-w-[200px] truncate">
                         <button
                           onClick={() => setDetailProject(p)}
-                          style={{ background:"none", border:"none", color:"#f1f5f9", cursor:"pointer",
-                            fontWeight:600, fontSize:".85rem", textAlign:"left", padding:0 }}>
+                          className="font-bold text-slate-800 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-450 transition-colors bg-transparent border-none p-0 cursor-pointer text-left focus:outline-none"
+                        >
                           {p.projectName}
                         </button>
                       </td>
-                      <td style={{ padding:".7rem 1rem" }}>
-                        <div style={{ color:"#e2e8f0", fontSize:".85rem" }}>{p.customerName}</div>
-                        <div style={{ color:"#64748b", fontSize:".75rem" }}>PIC: {p.picName}</div>
+                      <td className="p-4">
+                        <div className="font-bold text-slate-700 dark:text-slate-300">{p.customerName}</div>
+                        <div className="text-[10px] text-slate-450 dark:text-slate-500 font-semibold mt-0.5">PIC: {p.picName}</div>
                       </td>
-                      <td style={{ padding:".7rem 1rem", color:"#94a3b8", fontSize:".8rem", maxWidth:120 }}>
+                      <td className="p-4 text-slate-600 dark:text-slate-450 max-w-[120px] truncate">
                         {p.location ?? "-"}
                       </td>
-                      <td style={{ padding:".7rem 1rem", color:"#4ade80", fontWeight:600, whiteSpace:"nowrap" }}>
+                      <td className="p-4 text-emerald-600 dark:text-emerald-400 font-bold">
                         {formatRp(p.projectValue)}
                       </td>
-                      <td style={{ padding:".7rem 1rem", color:"#94a3b8", whiteSpace:"nowrap", fontSize:".8rem" }}>
+                      <td className="p-4 text-slate-500 dark:text-slate-400 font-semibold">
                         {formatDate(p.tenderDate)}
                       </td>
-                      <td style={{ padding:".7rem 1rem", color:"#94a3b8", whiteSpace:"nowrap", fontSize:".8rem" }}>
+                      <td className="p-4 text-slate-500 dark:text-slate-400 font-semibold">
                         {formatDate(p.estimatedFinish)}
                       </td>
-                      <td style={{ padding:".7rem 1rem" }}>
+                      <td className="p-4">
                         {statusLoading === p.id ? (
-                          <span style={{ color:"#64748b", fontSize:".75rem" }}>Menyimpan...</span>
+                          <span className="text-[10px] text-slate-400 font-semibold">Menyimpan...</span>
                         ) : (
                           <select
-                            className="select-status"
+                            className={cn(
+                              "text-[10px] font-bold px-2.5 py-1 rounded-full border focus:outline-none cursor-pointer",
+                              m.textClass, m.bgClass, m.borderClass
+                            )}
                             value={p.status}
                             onChange={(e) => updateStatus(p.id, e.target.value)}
-                            style={{ color: m.color, borderColor: m.border, background: m.bg }}>
+                          >
                             {STATUS_LIST.map((s) => (
-                              <option key={s} value={s} style={{ background:"#1e293b", color:"#f1f5f9" }}>
+                              <option key={s} value={s} className="bg-card text-slate-800 dark:text-white">
                                 {STATUS_META[s].label}
                               </option>
                             ))}
                           </select>
                         )}
                       </td>
-                      <td style={{ padding:".7rem 1rem" }}>
-                        <div style={{ display:"flex", gap:".4rem" }}>
-                          <button className="btn-ghost" onClick={() => openEdit(p)}>Edit</button>
+                      <td className="p-4 text-center">
+                        <div className="flex justify-center gap-2">
+                          <button 
+                            className="px-2.5 py-1 text-[11px] font-bold border border-border hover:border-emerald-500/50 dark:hover:border-emerald-800 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-lg bg-card cursor-pointer transition-all"
+                            onClick={() => openEdit(p)}
+                          >
+                            Edit
+                          </button>
                           {session?.role === "admin" && (
-                            <button className="btn-danger" onClick={() => handleDelete(p.id)}>Hapus</button>
+                            <button 
+                              className="px-2.5 py-1 text-[11px] font-bold border border-red-200 dark:border-red-900/40 hover:bg-red-50 dark:hover:bg-red-950/20 text-red-650 dark:text-red-400 rounded-lg cursor-pointer transition-all"
+                              onClick={() => handleDelete(p.id)}
+                            >
+                              Hapus
+                            </button>
                           )}
                         </div>
                       </td>
                     </tr>
                   );
-                })}
-              </tbody>
-            </table>
-          </div>
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
 
-          {/* Footer count */}
-          <div style={{ padding:".75rem 1.25rem", borderTop:"1px solid #334155",
-            color:"#64748b", fontSize:".78rem", display:"flex", justifyContent:"space-between" }}>
-            <span>Menampilkan {filtered.length} dari {projects.length} proyek</span>
-            {(search || filterStatus !== "ALL") && (
-              <button
-                onClick={() => { setSearch(""); setFilterStatus("ALL"); }}
-                style={{ background:"none", border:"none", color:"#4ade80", cursor:"pointer", fontSize:".78rem" }}>
-                Reset filter
-              </button>
-            )}
-          </div>
+        {/* Footer info stats */}
+        <div className="p-4 border-t border-border color-slate-500 dark:color-slate-400 text-xs flex justify-between items-center bg-slate-55/30 dark:bg-slate-900/5">
+          <span>Menampilkan <b>{filtered.length}</b> dari {projects.length} proyek</span>
+          {(search || filterStatus !== "ALL") && (
+            <button
+              onClick={() => { setSearch(""); setFilterStatus("ALL"); }}
+              className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline bg-transparent border-none p-0 cursor-pointer"
+            >
+              Reset filter
+            </button>
+          )}
         </div>
       </div>
 
-      {/* ===== FORM MODAL ===== */}
+      {/* ===== FORM MODAL (ADD / EDIT) ===== */}
       {showForm && (
-        <div className="overlay" onClick={(e) => e.target === e.currentTarget && setShowForm(false)}>
-          <div className="modal">
-            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"1.5rem" }}>
-              <h2 style={{ color:"#f1f5f9", fontSize:"1.1rem", fontWeight:700, margin:0 }}>
-                {editProject ? "Edit Proyek" : "Tambah Proyek Baru"}
+        <div 
+          className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+          onClick={(e) => e.target === e.currentTarget && setShowForm(false)}
+        >
+          <div className="bg-card border border-border rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 md:p-8 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-base font-black text-slate-900 dark:text-white tracking-tight">
+                {editProject ? "Edit Data Proyek" : "Tambah Proyek Baru"}
               </h2>
-              <button onClick={() => setShowForm(false)}
-                style={{ background:"none", border:"none", color:"#64748b", cursor:"pointer", fontSize:"1.25rem" }}>✕</button>
+              <button 
+                onClick={() => setShowForm(false)}
+                className="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 dark:hover:text-slate-350 cursor-pointer border border-transparent"
+              >
+                <X className="w-4 h-4" />
+              </button>
             </div>
 
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem" }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Nama Proyek */}
-              <div style={{ gridColumn:"1/-1" }}>
-                <label className="label">Nama Proyek *</label>
-                <input className="inp" placeholder="Contoh: Proyek Jembatan Tol Makassar"
-                  value={form.projectName} onChange={(e) => setForm({ ...form, projectName: e.target.value })} />
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Nama Proyek *</label>
+                <input 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 text-xs font-semibold" 
+                  placeholder="Contoh: Proyek Jembatan Tol Makassar"
+                  value={form.projectName} 
+                  onChange={(e) => setForm({ ...form, projectName: e.target.value })} 
+                />
               </div>
 
               {/* Customer */}
               <div>
-                <label className="label">Nama Customer / Perusahaan *</label>
-                <input className="inp" placeholder="PT. ..."
-                  value={form.customerName} onChange={(e) => setForm({ ...form, customerName: e.target.value })} />
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Nama Customer / Perusahaan *</label>
+                <input 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 text-xs font-semibold" 
+                  placeholder="PT. Adhi Karya (Persero) Tbk"
+                  value={form.customerName} 
+                  onChange={(e) => setForm({ ...form, customerName: e.target.value })} 
+                />
               </div>
 
               {/* PIC */}
               <div>
-                <label className="label">Nama PIC (Person in Charge) *</label>
-                <input className="inp" placeholder="Nama penanggung jawab"
-                  value={form.picName} onChange={(e) => setForm({ ...form, picName: e.target.value })} />
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Nama PIC *</label>
+                <input 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 text-xs font-semibold" 
+                  placeholder="Budi Santoso"
+                  value={form.picName} 
+                  onChange={(e) => setForm({ ...form, picName: e.target.value })} 
+                />
               </div>
 
               {/* Status */}
               <div>
-                <label className="label">Status Pipeline</label>
-                <select className="inp" value={form.status}
-                  onChange={(e) => setForm({ ...form, status: e.target.value })}>
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Status Pipeline</label>
+                <select 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:border-emerald-600 text-xs font-semibold cursor-pointer"
+                  value={form.status}
+                  onChange={(e) => setForm({ ...form, status: e.target.value })}
+                >
                   {STATUS_LIST.map((s) => <option key={s} value={s}>{STATUS_META[s].label}</option>)}
                 </select>
               </div>
 
               {/* Nilai Proyek */}
               <div>
-                <label className="label">Nilai Proyek (Rp)</label>
-                <input className="inp" type="number" placeholder="Contoh: 500000000"
-                  value={form.projectValue} onChange={(e) => setForm({ ...form, projectValue: e.target.value })} />
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Nilai Proyek (Rp)</label>
+                <input 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 text-xs font-semibold" 
+                  type="number" 
+                  placeholder="500000000"
+                  value={form.projectValue} 
+                  onChange={(e) => setForm({ ...form, projectValue: e.target.value })} 
+                />
               </div>
 
-              {/* Tanggal Mulai Proyek */}
+              {/* Tanggal Mulai */}
               <div>
-                <label className="label">Tanggal Mulai Proyek *</label>
-                <input className="inp" type="date"
-                  value={form.tenderDate} onChange={(e) => setForm({ ...form, tenderDate: e.target.value })} />
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Tanggal Mulai Proyek</label>
+                <input 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:border-emerald-600 text-xs font-semibold" 
+                  type="date"
+                  value={form.tenderDate} 
+                  onChange={(e) => setForm({ ...form, tenderDate: e.target.value })} 
+                />
               </div>
 
-              {/* Est. Selesai Proyek */}
+              {/* Estimasi Selesai */}
               <div>
-                <label className="label">Estimasi Selesai Proyek *</label>
-                <input className="inp" type="date"
-                  value={form.estimatedFinish} onChange={(e) => setForm({ ...form, estimatedFinish: e.target.value })} />
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Estimasi Selesai Proyek</label>
+                <input 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:border-emerald-600 text-xs font-semibold" 
+                  type="date"
+                  value={form.estimatedFinish} 
+                  onChange={(e) => setForm({ ...form, estimatedFinish: e.target.value })} 
+                />
               </div>
 
               {/* Lokasi */}
-              <div style={{ gridColumn:"1/-1" }}>
-                <label className="label">Lokasi Proyek</label>
-                <input className="inp" placeholder="Contoh: Makassar, Sulawesi Selatan"
-                  value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Lokasi Proyek</label>
+                <input 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 text-xs font-semibold" 
+                  placeholder="Makassar, Sulawesi Selatan"
+                  value={form.location} 
+                  onChange={(e) => setForm({ ...form, location: e.target.value })} 
+                />
               </div>
 
               {/* Notes */}
-              <div style={{ gridColumn:"1/-1" }}>
-                <label className="label">Catatan</label>
-                <textarea className="inp" rows={3} placeholder="Catatan tambahan (opsional)..."
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-350 mb-1.5">Catatan</label>
+                <textarea 
+                  className="w-full px-3.5 py-2 rounded-lg border border-border bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 text-xs font-semibold" 
+                  rows={3} 
+                  placeholder="Tulis catatan tambahan di sini..."
                   value={form.notes}
                   onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                  style={{ resize:"vertical" }} />
+                  style={{ resize: "vertical" }} 
+                />
               </div>
             </div>
 
-            <div style={{ display:"flex", gap:".75rem", justifyContent:"flex-end", marginTop:"1.5rem" }}>
-              <button className="btn-ghost" onClick={() => setShowForm(false)}>Batal</button>
-              <button className="btn-green" onClick={handleSubmit} disabled={loading}>
+            <div className="flex gap-3 justify-end mt-6 border-t border-border pt-4">
+              <button 
+                className="px-4 py-2 border border-border hover:border-slate-300 dark:hover:border-slate-700 text-slate-600 dark:text-slate-350 hover:bg-slate-50 dark:hover:bg-slate-850 rounded-xl text-xs font-bold cursor-pointer transition-all"
+                onClick={() => setShowForm(false)}
+              >
+                Batal
+              </button>
+              <button 
+                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white rounded-xl text-xs font-bold cursor-pointer transition-all" 
+                onClick={handleSubmit} 
+                disabled={loading}
+              >
                 {loading ? "Menyimpan..." : editProject ? "Simpan Perubahan" : "Tambah Proyek"}
               </button>
             </div>
@@ -479,84 +526,108 @@ export default function CrmClient({
 
       {/* ===== DETAIL SIDE PANEL ===== */}
       {detailProject && (
-        <div className="detail-overlay" onClick={(e) => e.target === e.currentTarget && setDetailProject(null)}>
-          <div className="detail-panel">
-            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"1.5rem" }}>
-              <div>
-                <span style={{ color:"#64748b", fontSize:".75rem", fontFamily:"monospace" }}>{detailProject.projectCode}</span>
-                <h2 style={{ color:"#f1f5f9", fontSize:"1.1rem", fontWeight:700, margin:".25rem 0 0" }}>{detailProject.projectName}</h2>
-              </div>
-              <button onClick={() => setDetailProject(null)}
-                style={{ background:"none", border:"none", color:"#64748b", cursor:"pointer", fontSize:"1.25rem", flexShrink:0 }}>✕</button>
-            </div>
-
-            {/* Pipeline steps */}
-            <div style={{ marginBottom:"1.5rem" }}>
-              <p style={{ color:"#64748b", fontSize:".75rem", fontWeight:600, marginBottom:".6rem", textTransform:"uppercase", letterSpacing:".05em" }}>
-                Update Status Pipeline
-              </p>
-              <div style={{ display:"flex", flexWrap:"wrap", gap:".4rem" }}>
-                {STATUS_LIST.map((s) => {
-                  const m = STATUS_META[s];
-                  const isActive = detailProject.status === s;
-                  return (
-                    <button
-                      key={s}
-                      className="pipeline-step"
-                      onClick={() => updateStatus(detailProject.id, s)}
-                      disabled={statusLoading === detailProject.id}
-                      style={{
-                        background: isActive ? m.bg : "transparent",
-                        border: `1px solid ${isActive ? m.border : "#334155"}`,
-                        color: isActive ? m.color : "#64748b",
-                      }}>
-                      {isActive && "✓ "}{m.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Detail info */}
-            <div style={{ display:"flex", flexDirection:"column", gap:".85rem" }}>
-              {[
-                { label: "Customer", value: detailProject.customerName },
-                { label: "PIC", value: detailProject.picName },
-                { label: "Lokasi", value: detailProject.location ?? "-" },
-                { label: "Nilai Proyek", value: formatRp(detailProject.projectValue) },
-                { label: "Tanggal Mulai Proyek", value: formatDate(detailProject.tenderDate) },
-                { label: "Estimasi Selesai Proyek", value: formatDate(detailProject.estimatedFinish) },
-                { label: "Dibuat", value: formatDate(detailProject.createdAt) },
-              ].map(({ label, value }) => (
-                <div key={label} style={{ borderBottom:"1px solid #334155", paddingBottom:".75rem" }}>
-                  <div style={{ color:"#64748b", fontSize:".75rem", marginBottom:".2rem" }}>{label}</div>
-                  <div style={{ color:"#e2e8f0", fontSize:".9rem" }}>{value}</div>
-                </div>
-              ))}
-
-              {detailProject.notes && (
+        <div 
+          className="fixed inset-0 bg-black/40 z-40 flex items-start justify-end"
+          onClick={(e) => e.target === e.currentTarget && setDetailProject(null)}
+        >
+          <div className="bg-card border-l border-border w-full max-w-md h-screen overflow-y-auto p-6 md:p-8 shadow-2xl animate-in slide-in-from-right duration-350 ease-out-expo flex flex-col justify-between">
+            <div className="flex flex-col flex-1">
+              
+              {/* Header Panel */}
+              <div className="flex justify-between items-start mb-6 border-b border-border pb-4">
                 <div>
-                  <div style={{ color:"#64748b", fontSize:".75rem", marginBottom:".35rem" }}>Catatan</div>
-                  <div style={{ color:"#94a3b8", fontSize:".85rem", lineHeight:1.6,
-                    background:"#0f172a", borderRadius:".5rem", padding:".75rem" }}>
-                    {detailProject.notes}
-                  </div>
+                  <span className="text-[10px] font-semibold font-mono text-slate-400 dark:text-slate-500">{detailProject.projectCode || "Kode N/A"}</span>
+                  <h2 className="text-base font-black text-slate-900 dark:text-white mt-1 leading-tight">{detailProject.projectName}</h2>
                 </div>
-              )}
+                <button 
+                  onClick={() => setDetailProject(null)}
+                  className="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 dark:hover:text-slate-350 cursor-pointer border border-transparent shrink-0"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Pipeline Step Updater */}
+              <div className="mb-6">
+                <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-3">
+                  Perbarui Status Tahapan Proyek:
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {STATUS_LIST.map((s) => {
+                    const m = STATUS_META[s];
+                    const isActive = detailProject.status === s;
+                    return (
+                      <button
+                        key={s}
+                        onClick={() => updateStatus(detailProject.id, s)}
+                        disabled={statusLoading === detailProject.id}
+                        className={cn(
+                          "flex items-center justify-center gap-1.5 p-2 rounded-lg text-xs font-bold border transition-all cursor-pointer",
+                          isActive 
+                            ? `${m.bgClass} ${m.borderClass} ${m.textClass}` 
+                            : "border-border text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-850"
+                        )}
+                      >
+                        {isActive && <Check className="w-3 h-3" />}
+                        {m.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Field Info */}
+              <div className="space-y-4">
+                {[
+                  { label: "Nama Customer", value: detailProject.customerName },
+                  { label: "Nama PIC", value: detailProject.picName },
+                  { label: "Lokasi Konstruksi", value: detailProject.location ?? "-" },
+                  { label: "Nilai Proyek / Kontrak", value: formatRp(detailProject.projectValue), isHighlight: true },
+                  { label: "Tanggal Mulai Proyek", value: formatDate(detailProject.tenderDate) },
+                  { label: "Estimasi Selesai Proyek", value: formatDate(detailProject.estimatedFinish) },
+                  { label: "Waktu Input Data", value: formatDate(detailProject.createdAt) },
+                ].map(({ label, value, isHighlight }) => (
+                  <div key={label} className="border-b border-border pb-3">
+                    <div className="text-[10px] text-slate-450 dark:text-slate-500 font-bold mb-1">{label}</div>
+                    <div className={cn("text-xs font-semibold", isHighlight ? "text-emerald-600 dark:text-emerald-450 font-black text-sm" : "text-slate-800 dark:text-slate-200")}>
+                      {value}
+                    </div>
+                  </div>
+                ))}
+
+                {detailProject.notes && (
+                  <div>
+                    <div className="text-[10px] text-slate-455 dark:text-slate-500 font-bold mb-2">Catatan Tambahan</div>
+                    <div className="text-xs text-slate-600 dark:text-slate-350 leading-relaxed bg-slate-50 dark:bg-slate-900 rounded-lg p-3 border border-border">
+                      {detailProject.notes}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
-            {/* Actions */}
-            <div style={{ display:"flex", gap:".5rem", marginTop:"1.5rem" }}>
-              <button className="btn-ghost" style={{ flex:1 }} onClick={() => { openEdit(detailProject); setDetailProject(null); }}>
+            {/* Footer Panel Actions */}
+            <div className="flex gap-3 border-t border-border pt-4 mt-6">
+              <button 
+                className="flex-1 flex items-center justify-center gap-1.5 py-2.5 border border-border hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-850 rounded-xl text-xs font-bold cursor-pointer transition-all" 
+                onClick={() => { openEdit(detailProject); setDetailProject(null); }}
+              >
+                <Edit2 className="w-3.5 h-3.5" />
                 Edit Data
               </button>
               {session?.role === "admin" && (
-                <button className="btn-danger" onClick={() => handleDelete(detailProject.id)}>Hapus</button>
+                <button 
+                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 border border-red-200 dark:border-red-900/40 hover:bg-red-50 dark:hover:bg-red-950/20 text-red-600 dark:text-red-400 rounded-xl text-xs font-bold cursor-pointer transition-all" 
+                  onClick={() => handleDelete(detailProject.id)}
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  Hapus
+                </button>
               )}
             </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

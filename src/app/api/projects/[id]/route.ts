@@ -1,7 +1,9 @@
+export const dynamic = 'force-dynamic';
+
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
-import { productionPlans, bomMaterials, manpowerPlans } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { projects, contracts, productionPlans, bomMaterials, manpowerPlans, dailyReports, finishedGoods, operationalExpenses } from "@/db/schema";
+import { eq, inArray } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 
 export async function PATCH(
@@ -15,76 +17,65 @@ export async function PATCH(
   const body = await req.json();
 
   try {
-    const update: Record<string, unknown> = { updatedAt: new Date() };
-    if (body.status !== undefined)       update.status = body.status;
-    if (body.spkNumber !== undefined)    update.spkNumber = body.spkNumber;
-    if (body.targetVolume !== undefined) update.targetVolume = Number(body.targetVolume);
-    if (body.unit !== undefined)         update.unit = body.unit;
-    if (body.commenceDate !== undefined) update.commenceDate = body.commenceDate;
-    if (body.deadlineDate !== undefined) update.deadlineDate = body.deadlineDate;
-    if (body.notes !== undefined)        update.notes = body.notes || null;
+    const update: any = { updatedAt: new Date() };
+    if (body.projectName !== undefined)    update.projectName = body.projectName;
+    if (body.customerName !== undefined)   update.customerName = body.customerName;
+    if (body.picName !== undefined)        update.picName = body.picName;
+    if (body.status !== undefined)         update.status = body.status;
+    if (body.projectValue !== undefined)   update.projectValue = body.projectValue ? String(body.projectValue) : null;
+    if (body.location !== undefined)       update.location = body.location;
+    if (body.notes !== undefined)          update.notes = body.notes;
 
-    const [updated] = await db
-      .update(productionPlans)
-      .set(update)
-      .where(eq(productionPlans.id, id))
-      .returning();
+    if (body.tenderDate)      update.tenderDate = new Date(body.tenderDate);
+    if (body.estimatedFinish) update.estimatedFinish = new Date(body.estimatedFinish);
 
-    // JIKA FORM EDIT MENGIRIM BOM BARU (HAPUS YANG LAMA, MASUKKAN YANG BARU)
-    if (body.bomItems) {
-      await db.delete(bomMaterials).where(eq(bomMaterials.planId, id));
-      const validBom = body.bomItems.filter((b: any) => b.materialName && b.estimatedQty);
-      if (validBom.length > 0) {
-        const bomData = validBom.map((item: any) => ({
-          planId: id,
-          materialName: item.materialName,
-          estimatedQty: item.estimatedQty.toString(),
-          unit: item.unit,
-          procurementType: item.procurementType,
-          unitPrice: item.unitPrice?.toString() || "0",
-          notes: item.notes || null
-        }));
-        await db.insert(bomMaterials).values(bomData);
-      }
-    }
-
-    // JIKA FORM EDIT MENGIRIM MANPOWER BARU
-    if (body.manpowerItems) {
-      await db.delete(manpowerPlans).where(eq(manpowerPlans.planId, id));
-      const validMp = body.manpowerItems.filter((m: any) => m.roleDescription && m.headcount);
-      if (validMp.length > 0) {
-        const mpData = validMp.map((mp: any) => ({
-          planId: id,
-          sourceType: mp.sourceType,
-          headcount: Number(mp.headcount),
-          roleDescription: mp.roleDescription,
-          dailyRate: mp.dailyRate?.toString() || "0",
-          notes: mp.notes || null
-        }));
-        await db.insert(manpowerPlans).values(mpData);
-      }
-    }
-
-    // Kembalikan data lengkap
-    const finalBoms = await db.select().from(bomMaterials).where(eq(bomMaterials.planId, id));
-    const finalMps = await db.select().from(manpowerPlans).where(eq(manpowerPlans.planId, id));
-
-    return NextResponse.json({ ...updated, bomItems: finalBoms, manpowerItems: finalMps });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: "Gagal update SPK" }, { status: 500 });
+    const [updated] = await db.update(projects).set(update).where(eq(projects.id, id)).returning();
+    if (!updated) return NextResponse.json({ error: "Proyek tidak ditemukan!" }, { status: 404 });
+    return NextResponse.json(updated);
+  } catch (err: any) {
+    return NextResponse.json({ error: "Gagal update proyek", details: err.message }, { status: 500 });
   }
 }
 
+// 🔥 MODE NUKLIR PROYEK (SUDAH DITAMBAH BUKU KAS) 🔥
 export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  if (session.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (session.role !== "admin") return NextResponse.json({ error: "Hanya Admin yang bisa menghapus proyek!" }, { status: 403 });
 
   const { id } = await params;
-  await db.delete(productionPlans).where(eq(productionPlans.id, id));
-  return NextResponse.json({ success: true });
+
+  try {
+    const contractList = await db.select({ id: contracts.id }).from(contracts).where(eq(contracts.projectId, id));
+    
+    if (contractList.length > 0) {
+      const contractIds = contractList.map(c => c.id);
+      const planList = await db.select({ id: productionPlans.id }).from(productionPlans).where(inArray(productionPlans.contractId, contractIds));
+      
+      if (planList.length > 0) {
+        const planIds = planList.map(p => p.id);
+        
+        await db.delete(bomMaterials).where(inArray(bomMaterials.planId, planIds));
+        await db.delete(manpowerPlans).where(inArray(manpowerPlans.planId, planIds));
+        await db.delete(dailyReports).where(inArray(dailyReports.planId, planIds));
+        await db.delete(finishedGoods).where(inArray(finishedGoods.planId, planIds));
+        
+        // 🔥 BUKU KAS IKUT DIHAPUS 🔥
+        await db.delete(operationalExpenses).where(inArray(operationalExpenses.planId, planIds));
+        
+        await db.delete(productionPlans).where(inArray(productionPlans.id, planIds));
+      }
+      
+      await db.delete(contracts).where(inArray(contracts.id, contractIds));
+    }
+
+    await db.delete(projects).where(eq(projects.id, id));
+    
+    return NextResponse.json({ success: true, message: "Proyek & Seluruh Isinya Berhasil Dihapus!" });
+  } catch (err: any) {
+    return NextResponse.json({ error: "Gagal menghapus Proyek!", details: err.message }, { status: 500 });
+  }
 }

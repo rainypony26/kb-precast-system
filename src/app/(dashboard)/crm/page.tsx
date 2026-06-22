@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { db } from "@/db";
 import { projects, users } from "@/db/schema";
 import CrmClient from "@/components/crm/crm-client";

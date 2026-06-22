@@ -30,6 +30,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Cek apakah user aktif (tidak ditangguhkan/suspended)
+    if (user.isActive === false) {
+      return NextResponse.json(
+        { error: "Akun Anda ditangguhkan! Hubungi Administrator." },
+        { status: 403 }
+      );
+    }
+
     // Verifikasi password
     const isValid = await bcrypt.compare(password, user.passwordHash);
 
