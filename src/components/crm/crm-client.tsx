@@ -32,7 +32,7 @@ const STATUS_LIST = ["TENDER", "PENAWARAN", "NEGO", "PO", "KONTRAK", "SELESAI", 
 const STATUS_META: Record<string, { label: string; textClass: string; bgClass: string; borderClass: string }> = {
   TENDER:     { label: "Tender",     textClass: "text-slate-600 dark:text-slate-400", bgClass: "bg-slate-50 dark:bg-slate-900", borderClass: "border-slate-200 dark:border-slate-800" },
   PENAWARAN: { label: "Penawaran", textClass: "text-blue-700 dark:text-blue-400", bgClass: "bg-blue-50 dark:bg-blue-950/20",  borderClass: "border-blue-100 dark:border-blue-900/30" },
-  NEGO:       { label: "Nego",       textClass: "text-amber-755 dark:text-amber-400", bgClass: "bg-amber-50 dark:bg-amber-950/20",   borderClass: "border-amber-100 dark:border-amber-900/30" },
+  NEGO:       { label: "Nego",       textClass: "text-amber-700 dark:text-amber-400", bgClass: "bg-amber-50 dark:bg-amber-950/20",   borderClass: "border-amber-100 dark:border-amber-900/30" },
   PO:         { label: "PO",         textClass: "text-purple-700 dark:text-purple-400", bgClass: "bg-purple-50 dark:bg-purple-950/20",  borderClass: "border-purple-100 dark:border-purple-900/30" },
   KONTRAK:    { label: "Kontrak",    textClass: "text-emerald-700 dark:text-emerald-400", bgClass: "bg-emerald-50 dark:bg-emerald-950/20",   borderClass: "border-emerald-100 dark:border-emerald-900/30" },
   SELESAI:    { label: "Selesai",    textClass: "text-teal-700 dark:text-teal-400", bgClass: "bg-teal-50 dark:bg-teal-950/20",  borderClass: "border-teal-100 dark:border-teal-900/30" },
