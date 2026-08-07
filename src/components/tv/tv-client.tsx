@@ -153,7 +153,7 @@ export default function TVClient({ initialData }: TVClientProps) {
       {/* ─── HEADER UTAMA ─── */}
       <div className="relative z-10 flex items-center justify-between border-b border-slate-800/80 pb-5 bg-slate-950/80 px-5 py-2 rounded-2xl">
         <div className="flex items-center gap-4">
-          <img src="/logo.png" alt="Kalla Beton Logo" className="w-14 h-14 object-contain bg-white rounded-xl p-0.5 shadow-lg shadow-emerald-500/10 shrink-0" />
+          <img src="/logo-kalla.png" alt="Kalla Beton Logo" className="w-14 h-14 object-contain bg-white rounded-xl p-0.5 shadow-lg shadow-emerald-500/10 shrink-0" />
           <div>
             <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-3">
               Kalla Beton <span className="text-xs bg-emerald-950 border border-emerald-500/30 text-emerald-400 font-extrabold px-2.5 py-1 rounded-md">Precast Division</span>

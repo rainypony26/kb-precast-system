@@ -171,6 +171,8 @@ export const materialOutbound = pgTable("material_outbound", {
   recipient: text("recipient").notNull(),
   qty: decimal("qty", { precision: 15, scale: 3 }).notNull(),
   exitDate: timestamp("exit_date").notNull(),
+  projectId: uuid("project_id").references(() => projects.id, { onDelete: "set null" }),
+  unitPrice: decimal("unit_price", { precision: 15, scale: 2 }),
   notes: text("notes"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
@@ -279,6 +281,7 @@ export const rabs = pgTable("rabs", {
   overheadHo: decimal("overhead_ho", { precision: 15, scale: 2 }).notNull().default("0"),
   status: rabStatusEnum("status").notNull().default("DRAFT"), // DRAFT, APPROVED, REJECTED
   notes: text("notes"),
+  sellPrice: decimal("sell_price", { precision: 15, scale: 2 }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -353,6 +356,7 @@ export const materialInboundRelations = relations(materialInbound, ({ one }) => 
 
 export const materialOutboundRelations = relations(materialOutbound, ({ one }) => ({
   material: one(materials, { fields: [materialOutbound.materialId], references: [materials.id] }),
+  project: one(projects, { fields: [materialOutbound.projectId], references: [projects.id] }),
 }));
 
 export const dailyReportsRelations = relations(dailyReports, ({ one }) => ({

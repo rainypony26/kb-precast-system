@@ -15,7 +15,8 @@ import {
   ChevronRight,
   Monitor,
   Building2,
-  TrendingUp
+  TrendingUp,
+  Truck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SessionPayload } from "@/lib/auth";
@@ -131,7 +132,7 @@ export default function Sidebar({ session }: SidebarProps) {
         isCollapsed ? "flex-col justify-center gap-3" : "flex-row justify-between"
       )}>
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Kalla Beton Logo" className="w-9 h-9 object-contain rounded-lg" />
+          <img src="/logo-kalla.png" alt="Kalla Beton Logo" className="w-9 h-9 object-contain rounded-lg" />
           {!isCollapsed && (
             <div className="animate-in fade-in duration-300">
               <h1 className="text-slate-950 dark:text-white font-extrabold text-sm leading-none tracking-tight">Kalla Beton</h1>
@@ -243,6 +244,7 @@ export default function Sidebar({ session }: SidebarProps) {
           <div className="space-y-1">
             {[
               { label: "Pengadaan & Supplier", href: "/procurement", icon: Building2 },
+              { label: "Alokasi Bahan Baku", href: "/alokasi-material", icon: Truck },
               { label: "Gudang Proyek (FG)", href: "/inventory", icon: Package },
               { label: "Gudang Pusat (Raw Mat)", href: "/inventory/master", icon: Warehouse }
             ].map((item) => {

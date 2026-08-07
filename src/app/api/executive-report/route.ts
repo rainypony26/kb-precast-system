@@ -173,21 +173,7 @@ export async function GET(req: NextRequest) {
       };
     });
 
-    // Jika data cash flow kosong, buat fallback dinamis agar grafik tidak kosong
-    if (cashFlow.length === 0) {
-      const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"];
-      const currentYear = new Date().getFullYear();
-      cashFlow = monthNames.map((name, idx) => {
-        const inflow = 500000000 + idx * 100000000;
-        const outflow = 300000000 + idx * 70000000 + (idx === 4 ? 200000000 : 0);
-        return {
-          month: `${currentYear}-0${idx + 1}`,
-          inflow,
-          outflow,
-          netFlow: inflow - outflow
-        };
-      });
-    }
+    // No fallback to keep cash flow empty if no transactions exist
 
     return NextResponse.json({
       projectsSummary,

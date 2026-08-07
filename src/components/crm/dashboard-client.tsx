@@ -53,6 +53,7 @@ interface DashboardClientProps {
     fgQty: number;
     damagedQty: number;
   }[];
+  totalTargetSpk: number;
   session: any;
 }
 
@@ -62,6 +63,7 @@ export default function DashboardClient({
   totalDamaged,
   defectRate,
   totalActual,
+  totalTargetSpk,
   recentBkh,
   recentDeliveries,
   chartData,
@@ -81,6 +83,7 @@ export default function DashboardClient({
 
   const qcGoodPct = 100 - defectRate;
   const qcRejectPct = defectRate;
+  const targetAchievedPct = totalTargetSpk > 0 ? (totalFg / totalTargetSpk) * 100 : 0;
 
   // Refined modules list — unified, premium styling matching the brand register
   const coreModules = [
@@ -346,7 +349,7 @@ export default function DashboardClient({
                     strokeDashoffset={2 * Math.PI * 64 * (defectRate / 100)}
                   />
                   
-                  {/* Middle Ring: Mock Target */}
+                  {/* Middle Ring: Target */}
                   <circle cx="80" cy="80" r="48" className="stroke-slate-100 dark:stroke-slate-800" strokeWidth="8" fill="transparent" />
                   <circle 
                     cx="80" 
@@ -356,7 +359,7 @@ export default function DashboardClient({
                     strokeWidth="8" 
                     fill="transparent" 
                     strokeDasharray={2 * Math.PI * 48}
-                    strokeDashoffset={2 * Math.PI * 48 * 0.15}
+                    strokeDashoffset={totalTargetSpk > 0 ? 2 * Math.PI * 48 * (1 - (Math.min(targetAchievedPct, 100) / 100)) : 2 * Math.PI * 48}
                   />
 
                   {/* Inner Ring: Reject */}
@@ -394,7 +397,7 @@ export default function DashboardClient({
                   <span className="w-3 h-3 rounded-full bg-indigo-500 shrink-0" />
                   <span className="font-semibold text-slate-600 dark:text-slate-400">Target SPK</span>
                 </div>
-                <span className="font-bold text-slate-900 dark:text-white">34.760 pcs <span className="text-[10px] text-indigo-600 font-bold ml-1">+12.4%</span></span>
+                <span className="font-bold text-slate-900 dark:text-white">{totalTargetSpk.toLocaleString("id-ID")} pcs <span className="text-[10px] text-indigo-600 font-bold ml-1">+{targetAchievedPct.toFixed(1)}%</span></span>
               </div>
 
               <div className="flex justify-between items-center text-xs">

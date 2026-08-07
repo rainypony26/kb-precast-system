@@ -547,7 +547,7 @@ export default function ProductionClient({
       {/* HEADER SECTION */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 bg-card p-6 rounded-2xl border border-border shadow-sm">
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Kalla Beton Logo" className="w-9 h-9 object-contain rounded-lg" /> 
+          <img src="/logo-kalla.png" alt="Kalla Beton Logo" className="w-9 h-9 object-contain rounded-lg" /> 
           <div>
             <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Rencana produksi & anggaran</h1>
             <p className="text-slate-550 dark:text-slate-400 text-xs mt-1">Kelola anggaran RAB proyek, Surat Perintah Kerja (SPK), dan BOM precast</p>

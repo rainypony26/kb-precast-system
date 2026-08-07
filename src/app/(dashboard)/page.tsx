@@ -56,16 +56,18 @@ export default async function DashboardPage() {
   const totalDamaged = reportsSummary[0]?.totalDamaged ?? 0;
   const defectRate = (totalFg + totalDamaged) > 0 ? (totalDamaged / (totalFg + totalDamaged)) * 100 : 0;
 
-  // 3. Ambil total realisasi biaya aktual dari production_plans (SPK)
+  // 3. Ambil total realisasi biaya aktual & target volume dari production_plans (SPK)
   const actualSummary = await db
     .select({
       material: sql<number>`sum(${productionPlans.actualMaterial})::float`,
       manpower: sql<number>`sum(${productionPlans.actualManpower})::float`,
       overhead: sql<number>`sum(${productionPlans.actualOverhead})::float`,
+      totalTargetSpk: sql<number>`sum(${productionPlans.targetVolume})::int`,
     })
     .from(productionPlans);
 
   const totalActual = (actualSummary[0]?.material ?? 0) + (actualSummary[0]?.manpower ?? 0) + (actualSummary[0]?.overhead ?? 0);
+  const totalTargetSpk = actualSummary[0]?.totalTargetSpk ?? 0;
 
   // 4. Ambil 5 laporan harian BKH terbaru
   const recentBkh = await db
@@ -126,18 +128,7 @@ export default async function DashboardPage() {
     console.error("Error fetching daily production for chart:", err);
   }
 
-  // Fallback jika database masih kosong
-  if (chartData.length === 0) {
-    chartData = [
-      { date: "04 Jun", fgQty: 120, damagedQty: 5 },
-      { date: "05 Jun", fgQty: 150, damagedQty: 8 },
-      { date: "06 Jun", fgQty: 90, damagedQty: 2 },
-      { date: "07 Jun", fgQty: 200, damagedQty: 12 },
-      { date: "08 Jun", fgQty: 180, damagedQty: 4 },
-      { date: "09 Jun", fgQty: 220, damagedQty: 15 },
-      { date: "10 Jun", fgQty: 250, damagedQty: 6 },
-    ];
-  }
+  // No fallback to keep chart empty if no production reports exist
 
   return (
     <DashboardClient
@@ -146,6 +137,7 @@ export default async function DashboardPage() {
       totalDamaged={totalDamaged}
       defectRate={defectRate}
       totalActual={totalActual}
+      totalTargetSpk={totalTargetSpk}
       recentBkh={recentBkh}
       recentDeliveries={recentDeliveries}
       chartData={chartData}

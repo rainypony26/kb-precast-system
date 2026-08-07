@@ -118,34 +118,7 @@ export default function MasterInventoryClient({
     else exportToPDF("LAPORAN RIWAYAT GUDANG PUSAT", [["Tanggal", "Jenis", "Barang", "Vendor/Proyek", "Jumlah"]], combined.map(d=>Object.values(d)), `Riwayat_Gudang_${new Date().toLocaleDateString()}`);
   };
 
-  // ================= ACTION HANDLERS =================
-  async function handleSuntikOtomatis() {
-    if (!confirm("Ini akan memasukkan 27 master material (termasuk besi) secara otomatis. Lanjutkan?")) return;
-    setLoading(true);
-    const dataSuntikan = [
-      { name: "Semen (PC)", category: "MATERIAL BETON", unit: "Kg" }, { name: "Pasir Beton", category: "MATERIAL BETON", unit: "m3" },
-      { name: "Split / Chipping", category: "MATERIAL BETON", unit: "m3" }, { name: "Air", category: "MATERIAL BETON", unit: "Liter" },
-      { name: "Besi D.10", category: "BESI TULANGAN", unit: "Batang" }, { name: "Besi D.13", category: "BESI TULANGAN", unit: "Batang" },
-      { name: "Besi D.16", category: "BESI TULANGAN", unit: "Batang" }, { name: "Besi D.19", category: "BESI TULANGAN", unit: "Batang" },
-      { name: "Besi D.8", category: "BESI TULANGAN", unit: "Batang" }, { name: "Besi P.6", category: "BESI TULANGAN", unit: "Batang" },
-      { name: "Besi P.8", category: "BESI TULANGAN", unit: "Batang" }, { name: "Besi P.10", category: "BESI TULANGAN", unit: "Batang" },
-      { name: "Besi P.12", category: "BESI TULANGAN", unit: "Batang" }, { name: "Besi DS.7", category: "BESI TULANGAN", unit: "Batang" },
-      { name: "Besi DS.3", category: "BESI TULANGAN", unit: "Batang" }, { name: "WIRE 5.5", category: "BESI TULANGAN", unit: "Kg" },
-      { name: "PC. STANDART 12,7", category: "BESI TULANGAN", unit: "Kg" }, { name: "PLAT. 6", category: "PLAT BESI", unit: "Lembar" },
-      { name: "PLAT. 8", category: "PLAT BESI", unit: "Lembar" }, { name: "BESI STRIP 5", category: "PLAT BESI", unit: "Batang" },
-      { name: "Bendrat", category: "KAWAT & SUPPORT", unit: "Kg" }, { name: "Klem", category: "KAWAT & SUPPORT", unit: "Pcs" },
-      { name: "Stapping", category: "KAWAT & SUPPORT", unit: "Roll" }, { name: "Minyak Bekisting", category: "KIMIA & CAIRAN", unit: "Liter" },
-      { name: "Solar", category: "KIMIA & CAIRAN", unit: "Liter" }, { name: "Additive NP", category: "KIMIA & CAIRAN", unit: "Liter" },
-      { name: "Additive HE", category: "KIMIA & CAIRAN", unit: "Liter" }
-    ];
-    let sukses = 0;
-    for(const item of dataSuntikan) {
-      const isExist = initialMaterials.some(m => m.name.toLowerCase() === item.name.toLowerCase());
-      if (!isExist) { try { await fetch("/api/inventory/master", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(item) }); sukses++; } catch (e) {} }
-    }
-    alert(`BOSSKU! Proses Selesai! 🎉\nBerhasil menyuntikkan ${sukses} material baru.`);
-    setLoading(false); router.refresh();
-  }
+
 
   async function handleAddMaterial() {
     if (!materialForm.name || !materialForm.unit) return alert("Isi maki' nama dan satuan!");
@@ -286,9 +259,7 @@ export default function MasterInventoryClient({
               <button onClick={() => handleExportRawStock('excel')} className="bg-card hover:bg-slate-50 dark:hover:bg-slate-800 text-emerald-700 dark:text-emerald-400 border border-border px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2"><FileSpreadsheet size={14}/> Excel</button>
               <button onClick={() => handleExportRawStock('pdf')} className="bg-card hover:bg-slate-50 dark:hover:bg-slate-800 text-red-700 dark:text-red-400 border border-border px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 mr-4"><FileText size={14}/> Pdf</button>
 
-              <button onClick={handleSuntikOtomatis} disabled={loading} className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 transition-all shadow-sm">
-                <Zap size={14} /> Suntik Material
-              </button>
+
               <button onClick={() => setShowAddModal(true)} className="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-4 py-2 rounded-xl font-bold text-xs border border-border shadow-sm">+ Barang Baru</button>
               <button onClick={() => setShowInboundModal(true)} className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl font-bold text-xs flex gap-2 shadow-sm"><ArrowDownCircle size={14}/> Inbound</button>
               <button onClick={() => setShowOutboundModal(true)} className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl font-bold text-xs flex gap-2 shadow-sm"><ArrowUpCircle size={14}/> Outbound</button>
